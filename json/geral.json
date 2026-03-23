@@ -1,0 +1,30 @@
+{
+    "nome": {
+        "nome": "Nome Princial",
+        "valor": "Consultoria Imobiliária",
+        "tamanho": "100",
+        "class": "",
+        "ajuda": "O nome da empresa que aparecerá em textos no site."
+    },
+    "email": {
+        "nome": "E-mail Principal",
+        "valor": "suporte@fullbiz.com.br",
+        "tamanho": "250",
+        "class": "",
+        "ajuda": "E-mail que irá receber os formulários do site."
+    },
+    "title": {
+        "nome": "Título do Site (Navegador)",
+        "valor": "Consultoria Imobiliária Site Demonstração",
+        "tamanho": "100",
+        "class": "",
+        "ajuda": "Utilize o nome da empresa e palavras-chave do negócio, como: Imóveis, Venda, Imobiliária."
+    },
+    "description": {
+        "nome": "Meta Description",
+        "valor": "Imobiliária especializada em Vendas e Locações de Imóveis nos melhores bairros da cidade.",
+        "tamanho": "200",
+        "class": "textarea",
+        "ajuda": "Texto curto utilizado na TAG Meta Description"
+    }
+}

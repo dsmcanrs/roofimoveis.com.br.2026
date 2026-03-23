@@ -1,0 +1,107 @@
+{
+    "nome": "Trabalhe Conosco",
+    "botao": "Enviar Currículo",
+    "email": "",
+    "fields": [
+        {
+            "required": 1,
+            "class": "",
+            "cols": "3",
+            "label": "Nome",
+            "placeholder": "Seu Nome",
+            "rows": "",
+            "type": "text",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "class": "valida-email",
+            "cols": "3",
+            "label": "E-mail",
+            "placeholder": "Seu E-mail",
+            "rows": "",
+            "type": "text",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "class": "mask-fone",
+            "cols": "3",
+            "label": "Telefone",
+            "placeholder": "Telefone",
+            "rows": "",
+            "type": "text",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "class": "mask-fone",
+            "cols": "3",
+            "label": "Celular",
+            "placeholder": "Celular",
+            "rows": "",
+            "type": "text",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "class": "",
+            "cols": "6",
+            "label": "Endereço",
+            "placeholder": "Rua, número e complemento",
+            "rows": "",
+            "type": "text",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "class": "",
+            "cols": "3",
+            "label": "Bairro",
+            "placeholder": "Bairro",
+            "rows": "",
+            "type": "text",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "class": "",
+            "cols": "3",
+            "label": "Cidade",
+            "placeholder": "Cidade",
+            "rows": "",
+            "type": "text",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "class": "",
+            "cols": "12",
+            "label": "Vaga",
+            "placeholder": "",
+            "rows": "",
+            "type": "select",
+            "value": "Administrativo\r\nCorretor\r\nGerente"
+        },
+        {
+            "required": 1,
+            "class": "",
+            "cols": "12",
+            "label": "Observações",
+            "placeholder": "Informações adicionais",
+            "rows": "4",
+            "type": "textarea",
+            "value": ""
+        },
+        {
+            "required": 0,
+            "class": "",
+            "cols": "12",
+            "label": "Currículo",
+            "placeholder": "Anexar Currículo",
+            "rows": "",
+            "type": "file",
+            "value": ""
+        }
+    ]
+}

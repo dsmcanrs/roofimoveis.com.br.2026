@@ -1,0 +1,6 @@
+Options -Indexes
+
+RewriteEngine On
+
+RewriteRule ^ https://app.fullbroker.com.br [R=301,L]
+

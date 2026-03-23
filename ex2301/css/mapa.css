@@ -1,0 +1,64 @@
+/* Mapa Cinza */
+.leaflet-tile-pane {
+	/* -webkit-filter: grayscale(100%); */
+	/* filter: grayscale(100%); */
+}
+
+.marker-cluster {
+	color: #333;
+}
+
+/* Info Windows do Leaflet */
+.leaflet-popup-content-wrapper {
+	border-radius: 1px;
+}
+
+.leaflet-popup-content {
+	width: 150px;
+	margin: 0px;
+}
+
+.leaflet-popup-content .imagem {
+	max-height: 100px;
+	overflow: hidden;
+}
+
+.leaflet-popup-content .imagem img {
+	width: 100%;
+}
+
+.leaflet-popup-close-button {
+	z-index: 110;
+}
+
+.leaflet-popup-content .imagem {
+	display: block;
+	width: 100%;
+	height: inherit;
+	min-height: 100px;
+	max-height: 120px;
+	overflow: hidden;
+	background: center center no-repeat;
+	background-size: cover;
+}
+
+.leaflet-popup-content .sobre {
+	padding: 10px;
+}
+
+.leaflet-popup-content .titulo {
+	font-weight: bold;
+}
+
+.leaflet-popup-content .info {
+	margin: 10px 0 10px 0;
+}
+
+.leaflet-popup-content .info span {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.leaflet-popup-content .preco {
+	font-weight: bold;
+}

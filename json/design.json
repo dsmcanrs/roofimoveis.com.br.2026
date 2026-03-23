@@ -1,0 +1,79 @@
+{
+    "logo": {
+        "nome": "Logomarca",
+        "valor": "../img/ex2301.png",
+        "tamanho": "100",
+        "class": "dropify",
+        "ajuda": "Utilize imagem PNG com FUNDO TRANSPARENTE."
+    },
+    "favicon": {
+        "nome": "Ícone",
+        "valor": "../img/favicon.png",
+        "tamanho": "100",
+        "class": "dropify",
+        "ajuda": "Imagem que aparecerá ao lado do endereço do site no navegador."
+    },
+    "color_1": {
+        "nome": "Cor Primária",
+        "valor": "#433c5d",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor de títulos e botões."
+    },
+    "color_2": {
+        "nome": "Cor Secundária",
+        "valor": "#00a6a6",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor de subtítulos, botões e tarjas."
+    },
+    "color_3": {
+        "nome": "Cor de Constraste",
+        "valor": "#EB3C33",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor de ícones, tarjas."
+    },
+    "color_header": {
+        "nome": "Cabeçalho",
+        "valor": "#433c5d",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor de fundo do cabeçalho."
+    },
+    "color_header_font": {
+        "nome": "Fonte do Cabeçalho",
+        "valor": "#f8f8f8",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor da letra do cabeçalho."
+    },
+    "color_body": {
+        "nome": "Corpo",
+        "valor": "#f8f8f8",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor de fundo do site."
+    },
+    "color_body_font": {
+        "nome": "Fonte do Corpo",
+        "valor": "#312C33",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor da letra do site."
+    },
+    "color_footer": {
+        "nome": "Rodapé",
+        "valor": "#302c43",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor de fundo do rodapé."
+    },
+    "color_footer_font": {
+        "nome": "Fonte do Rodapé",
+        "valor": "#f8f8f8",
+        "tamanho": "",
+        "class": "colorpicker",
+        "ajuda": "Cor da letra do rodapé."
+    }
+}

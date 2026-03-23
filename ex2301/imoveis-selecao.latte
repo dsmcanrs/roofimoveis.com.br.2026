@@ -1,0 +1,151 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-selecao{/block}
+
+{block content}
+
+    <main class="container py-4 mt-3">
+
+      {if $imoveis>0}
+      <section id="favoritos" class="">
+
+        <h1 class="h2 mb-4" data-aos="fade">
+          {$titulo} ({$total_imoveis})
+        </h1>
+
+        <div class="swiper-container overflow-hidden">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide d-none d-md-block w-12 w-md-4">
+                <div class="favorito">
+                    <div class="img"></div>
+                    <div class="label">
+                        <div>Código</div>
+                        <div>Tipo</div>
+                        <div>Localização</div>
+                        <div>Dormitórios</div>
+                        <div>Suítes</div>
+                        <div>Banheiros</div>
+                        <div>Vagas</div>
+                        <div>Área Privativa</div>
+                        <div>Área Total</div>
+                        <div>Valor</div>
+                    </div>
+                </div>
+            </div>
+
+            {foreach $imoveis as $imovel}
+            <div class="swiper-slide d-flex flex-shrink-1x w-12 w-md-4">
+              <div class="favorito flex-fill flex-column">
+                <div class="img position-relative">
+                  <div class="position-absolute right-0 me-2 mt-2">
+                    <a
+                      href="#"
+                      class="text-6 fav fav-{$imovel['codigo']} fav-on color-3"
+                      data-id="{$imovel['codigo']}"
+                      data-toggle="tooltip"
+                      alt="Remover"
+                      title="Remover"
+                      >
+                      <i class="fas fa-heart"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="text-6 fav fav-{$imovel['codigo']} fav-off color-white"
+                      data-id="{$imovel['codigo']}"
+                      data-toggle="tooltip"
+                      alt="Adicionar"
+                      title="Adicionar"
+                      >
+                      <i class="far fa-heart"></i>
+                    </a>
+                  </div>
+                  <a href="{$imovel['url']}" class="">
+                    <img src="{$imovel['foto']}" class="img-fit">
+                  </a>
+                </div>
+                <div class="info">
+                  <div>
+                    <strong>{$imovel['codigo']}</strong>
+                  </div>
+                  <div>
+                    {$imovel['categoria']}
+                  </div>
+                  <div class="text-truncate">
+                    {$imovel['bairro']}, {$imovel['cidade']}
+                  </div>
+                  <div>
+                    <span n:if="$imovel['dormitorios']">
+                      {$imovel['dormitorios']} dormitótio(s)
+                    </span>
+                  </div>
+                  <div>
+                    <span n:if="$imovel['suites']">
+                      {$imovel['suites']} suítes(s)
+                    </span>
+                  </div>
+                  <div>
+                    <span n:if="$imovel['banheiros']">
+                      {$imovel['banheiros']} banheiro(s)
+                    </span>
+                  </div>
+                  <div>
+                    <span n:if="$imovel['vagas']">
+                      {$imovel['vagas']} vaga(s)
+                    </span>
+                  </div>
+                  <div>
+                    <span n:if="$imovel['area_privativa']">
+                      {$imovel['area_privativa']}m² privativo
+                    </span>
+                  </div>
+                  <div>
+                    <span n:if="$imovel['area_total']">
+                      {$imovel['area_total']}m² total
+                    </span>
+                  </div>
+                  <div>
+                    <strong class="color-1">
+                      R${$imovel['valor']}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/foreach}
+
+          </div>
+
+          <div class="pagination col-md-12 mt-5 d-flex justify-content-center"></div>
+
+        </div>
+
+      </section>
+      {/if}
+
+    </main>
+
+    {if $imoveis==0}
+    <section class="my-5">
+      <div class="container">
+        <div class="d-flex flex-column text-center">
+          <div class="h2">
+            Oops. Informe corretamente os códigos dos imóveis na url.
+          </div>
+          <div class="h5 mt-5">
+            Não encontrou o imóvel que procura?
+          </div>
+          <div>
+            Conte-nos como é o imóvel que você procura que nossa equipe fará uma busca especial para você.
+          </div>
+          <div class="mt-4">
+            <a href="encomende-seu-imovel" class="btn btn-lg btn-2 rounded-pill">
+              Encontre meu imóvel
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/if}
+
+{/block}

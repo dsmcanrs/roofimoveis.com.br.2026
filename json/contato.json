@@ -1,0 +1,30 @@
+{
+    "telefone": {
+        "nome": "Telefone",
+        "valor": "(11) 1111-1111",
+        "tamanho": "20",
+        "class": "mask-fone",
+        "ajuda": "Telefone comercial"
+    },
+    "whatsapp": {
+        "nome": "Whatsapp",
+        "valor": "(22) 2 2222-2222",
+        "tamanho": "20",
+        "class": "mask-fone",
+        "ajuda": "Informe o número do Whatsapp"
+    },
+    "endereco": {
+        "nome": "Endereço",
+        "valor": "Av Central, Centro, Porto Algre, RS",
+        "tamanho": "150",
+        "class": "",
+        "ajuda": "Rua, número, complemento, bairro, cidade, uf"
+    },
+    "gmaps": {
+        "nome": "Google Maps",
+        "valor": "https://goo.gl/maps/7gUY4ZyAWXB4RuiZ9",
+        "tamanho": "150",
+        "class": "",
+        "ajuda": "Consulte a url da localização em <a href=\"http://googlemaps.com\" target=\"_blank\">googlemaps.com</a>. Exemplo: https://goo.gl/maps/XXX. "
+    }
+}

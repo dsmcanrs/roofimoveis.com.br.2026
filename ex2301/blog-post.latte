@@ -1,0 +1,110 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-blog{/block}
+
+{block content}
+
+    {if $post['img']}
+    <section class="banner d-flex position-relative">
+
+      <div class="bg bg-dark gradient-top w-100 vh-50">
+          <img src="{$post['img']}" class="img-fit opacity-7" alt="{$post['titulo']}">
+      </div>
+
+      <div class="fg position-absolute z-index-2 d-flex align-items-center w-100 h-100">
+        <div class="container d-flex flex-column">
+
+          <div class="w-10 mx-auto py-5 text-center text-white">
+            <div class="text-2 fw-light" data-aos="fade-up">
+              {$post['tipo']}
+            </div>
+            <h1 class="text-6 text-lg-12" data-aos="fade-up" data-aos-delay="200">
+              {$post['titulo']}
+            </h1>
+            <div class="text-2 fw-light" data-aos="fade-up" data-aos-delay="300">
+              {$post['data']}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    {/if}
+
+    <main class="container py-3 my-3 my-md-5">
+      <div class="row">
+
+        <section id="post" class="col-lg-8 me-auto order-1">
+
+          <div class="post-share d-flex align-items-center mb-4">
+            <div class="d-flex mr-2">
+                Compartilhe:
+            </div>
+            <ul class="share d-flex nav">
+              <li class="text-3 px-2">
+                  <a href="#" alt="Compartilhar no Facebook" data-rede="facebook" data-url="{$post['url']}">
+                      <i class="fab fa-facebook"></i>
+                  </a>
+              </li>
+              <li class="text-3 px-2">
+                  <a href="#" alt="Compartilhar no Twitter" data-rede="twitter" data-url="{$post['url']}">
+                      <i class="fab fa-twitter"></i>
+                  </a>
+              </li>
+              <li class="text-3 px-2">
+                  <a alt="Compartilhar no Whatsapp" href="https://api.whatsapp.com/send?text={$post['url']}">
+                  <i class="fab fa-whatsapp"></i>
+                  </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="main-post mb-5">
+            <h1 class="h1 mb-4">
+              {$post['titulo']}
+            </h1>
+            <div>
+              {$post['texto']|noescape}
+            </div>
+          </div>
+
+        </section>
+
+        {block blog_menu}
+        <nav class="col-lg-3 order-1">
+          {include 'blog-menu.latte'}
+        </nav>
+        {/block}
+
+      </div>
+    </main>
+
+    {block posts}
+    <section class="blog-posts border-top brd-body">
+      <div class="container my-3 my-lg-5 overflow-hidden">
+
+        <div class="mb-4">
+          <h2 class="h1">
+            Você pode se interessar
+          </h2>
+        </div>
+
+        <div class="swiper-container rowx"
+          data-sm="1,30" data-lg="3,20"
+          data-aos="fade-up">
+          <div class="swiper-wrapper">
+            {foreach $posts as $post}
+            <div class="swiper-slide pb-5">
+              {include 'card-post.latte' post:$post}
+            </div>
+            {/foreach}
+          </div>
+        </div>
+        <div class="pagination col-md-12"></div>
+      </div>
+
+    </section>
+    {/block}
+
+{/block}

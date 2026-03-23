@@ -1,0 +1,138 @@
+{
+    "nome": "Encomende seu Imóvel",
+    "email": "",
+    "botao": "Enviar mensagem",
+    "fields": [
+        {
+            "group": "Dados Pessoais"
+        }, {
+            "text": "Dados pessoais para que possamos entrar em contato com você."
+        },
+        {
+            "required": 1,
+            "type": "text",
+            "label": "Nome",
+            "placeholder": "Seu Nome",
+            "class": "",
+            "cols": "4",
+            "rows": "",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "type": "text",
+            "label": "E-mail",
+            "placeholder": "Seu E-mail",
+            "class": "valida-email",
+            "cols": "4",
+            "rows": "",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "label": "Telefone",
+            "placeholder": "Telefone",
+            "type": "text",
+            "class": "mask-fone",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "group": "Descreva o imóvel ideal para você?"
+        },
+        {
+            "required": 1,
+            "type": "radio",
+            "label": "Finalidade",
+            "placeholder": "Selecione",
+            "class": "",
+            "cols": "12",
+            "rows": "",
+            "value": [
+                "Comprar imóvel",
+                "Alugar imóvel"
+            ]
+        },
+        {
+            "required": 1,
+            "label": "Tipo de Imóvel",
+            "placeholder": "Tipo de Imóvel",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Cidade",
+            "placeholder": "Cidade",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Bairro",
+            "placeholder": "Bairro",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 0,
+            "label": "Dormitórios",
+            "placeholder": "Dormitórios",
+            "type": "number",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 0,
+            "label": "Vagas",
+            "placeholder": "Vagas",
+            "type": "number",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Valor Min",
+            "placeholder": "Valor mínimo",
+            "type": "text",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Valor Max",
+            "placeholder": "Valor máximo",
+            "type": "text",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Observações",
+            "placeholder": "Outras características que você busca no imóvel",
+            "type": "textarea",
+            "class": "",
+            "cols": "12",
+            "value": "",
+            "rows": "4"
+        }
+    ]
+}

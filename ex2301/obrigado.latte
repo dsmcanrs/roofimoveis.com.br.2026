@@ -1,0 +1,37 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-empresa{/block}
+
+{block content}
+
+    <section id="banner">
+
+      <div class="d-flex w-100 bg-footer color-footer">
+        <div class="container my-5">
+          <div class="col-md-12 mx-auto">
+            <h1 class="h1" data-aos="fade-right">
+              Obrigado pela mensagem!
+            </h1>
+          </div>
+       </div>
+      </div>
+
+    </section>
+
+    <main id="main" class="container my-5 min-vh-30">
+      <div class="">
+        {$pagina['nome']}, recebemos sua mensagem com sucesso.
+      </div>
+      <div class="">
+        Dentro de segundos você será encaminhado para a página anterior.
+        <a href="javascript:history.back();">Clique aqui</a> para voltar imediatamente.
+      </div>
+    </main>
+
+{/block}
+
+{block jsExtra}
+    <script>
+      window.setTimeout("history.back(-2)", 10000);
+    </script>
+{/block}

@@ -1,0 +1,47 @@
+<a href="{$imovel['url']}" title="{$imovel['titulo']}">
+  <div class="d-flex align-items-center w-100 mb-4 p-2 border brd-body rounded-3 shadow-sm">
+
+    <div class="position-relative">
+      <span class="position-absolute m-1 badge bg-color-1 text-white">
+        {$imovel['codigo']}
+      </span>
+      <div style="width: 100px; height: 80px;">
+        <img src="{$imovel['foto']}" alt="{$imovel['titulo']}" class="img-fit rounded-3">
+      </div>
+    </div>
+
+    <div class="w-100 px-2 overflow-hidden">
+
+      <div class="text-truncate tt" title="{$imovel['titulo']}">
+        {$imovel['titulo']}
+      </div>
+
+      {if $imovel['categoria']!='empreendimento' }
+      <div class="d-flex justify-content-between py-2 small">
+        <div class="tt" title="Dormitórios" n:if="$imovel['dormitorios']">
+          <i class="bx-xs bx bx-bed color-1"></i>
+          <span>{$imovel['dormitorios']}</span>
+        </div>
+        <div class="tt" title="Suítes" n:if="$imovel['suites']">
+          <i class="bx-xs bx bx-shower color-1"></i>
+          <span>{$imovel['suites']}</span>
+        </div>
+        <div class="tt" title="Vagas" n:if="$imovel['vagas']">
+          <i class="bx-xs bx bx-car color-1"></i>
+          <span>{$imovel['vagas']}</span>
+        </div>
+        <div class="tt" title="Área Privativa" n:if="$imovel['area_privativa']">
+          <i class="bx-xs bx bx-crop color-1"></i>
+          <span>{$imovel['area_privativa']}</span>
+        </div>
+      </div>
+      {/if}
+
+      <div class="font-weight-bold color-1">
+        {$imovel['valor']}
+      </div>
+
+    </div>
+
+  </div>
+</a>

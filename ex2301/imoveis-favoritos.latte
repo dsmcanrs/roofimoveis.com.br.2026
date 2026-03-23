@@ -1,0 +1,197 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-favoritos{/block}
+
+{block content}
+
+    <main class="container py-4 mt-3">
+
+      <h1 class="h2 mb-4" data-aos="fade">
+        {$titulo} ({$total_imoveis})
+      </h1>
+
+      {if $imoveis>0}
+      <section id="favoritos">
+
+        <div class="swiper-container overflow-hidden">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide d-none d-md-block w-12 w-md-2">
+                <div class="favorito">
+                    <div class="img"></div>
+                    <div class="label">
+                        <div>Código</div>
+                        <div>Tipo</div>
+                        <div>Localização</div>
+                        <div>Dormitórios</div>
+                        <div>Suítes</div>
+                        <div>Banheiros</div>
+                        <div>Vagas</div>
+                        <div>Área</div>
+                        <div class="d-none">Área Total</div>
+                        <div>Valor</div>
+                    </div>
+                </div>
+            </div>
+
+            {foreach $imoveis as $imovel}
+            <div class="swiper-slide d-flex flex-shrink-1x w-12 w-md-3">
+              <div class="favorito flex-fill flex-column">
+                <div class="img position-relative">
+                  <div class="position-absolute right-0 me-2 mt-2">
+                    <a
+                      href="#"
+                      class="text-6 fav fav-{$imovel['id']} fav-on color-3"
+                      data-id="{$imovel['id']}"
+                      data-toggle="tooltip"
+                      alt="Remover"
+                      title="Remover"
+                      >
+                      <i class="fas fa-heart"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="text-6 fav fav-{$imovel['id']} fav-off color-white"
+                      data-id="{$imovel['id']}"
+                      data-toggle="tooltip"
+                      alt="Adicionar"
+                      title="Adicionar"
+                      >
+                      <i class="far fa-heart"></i>
+                    </a>
+                  </div>
+                  <a href="{$imovel['url']}">
+                    <img src="{$imovel['foto']}" class="img-fit">
+                  </a>
+                </div>
+                <div class="info">
+                  <div>
+                    <strong>{$imovel['codigo']}</strong>
+                  </div>
+                  <div>
+                    {$imovel['categoria']}
+                  </div>
+                  <div class="">
+                    <span class="w-11 text-truncate">
+                      {$imovel['bairro']}, {$imovel['cidade']}
+                    </span>
+                  </div>
+                  <div>
+                    {if $imovel['dormitorios']}
+                      {$imovel['dormitorios']} dormitório{if $imovel['dormitorios'] > 1}s{/if}
+                    {/if}
+                  </div>
+                  <div>
+                    {if $imovel['suites']}
+                      {$imovel['suites']} suite{if $imovel['suites'] > 1}s{/if}
+                    {/if}
+                  </div>
+                  <div>
+                    {if $imovel['banheiros']}
+                      {$imovel['banheiros']} baheiro{if $imovel['banheiros'] > 1}s{/if}
+                    {/if}
+                  </div>
+                  <div>
+                    {if $imovel['vagas']}
+                      {$imovel['vagas']} vaga{if $imovel['vagas'] > 1}s{/if}
+                    {/if}
+                  </div>
+                  <div>
+                    {if $imovel['area_privativa']}
+                      <span class="">{$imovel['area_privativa']}m²</span>
+                    {/if}
+                  </div>
+                  <div class="d-none">
+                    {if $imovel['area_total']}
+                      <span class="">{$imovel['area_total']}m²</span>
+                    {/if}
+                  </div>
+                  <div class="color-1 fw-bold">
+                    {$imovel['valor']}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/foreach}
+
+          </div>
+
+          <div class="pagination col-md-12 mt-5 d-flex justify-content-center"></div>
+
+        </div>
+
+        <div class="mt-4 d-block d-md-flex justify-content-center text-center">
+          <a href="#" class="m-2 btn brd-2 color-2 rounded-pill limpar-favoritos">
+            <i class="fa fa-trash"></i>
+            Limpar Favoritos
+          </a>
+          <a href="#" class="m-2 btn brd-1 color-1 rounded-pill ml-1 prevent dialog-open" data-src="#enviar-favoritos">
+            <i class="fa fa-envelope"></i>
+            Enviar Favoritos
+          </a>
+        </div>
+
+      </section>
+      {/if}
+
+    </main>
+
+    {if $imoveis==0}
+    <section class="my-5">
+      <div class="container">
+        <div class="d-flex flex-column text-center">
+          <div class="h2">
+            Oops. Sua lista de imóveis favoritos está vazia.
+          </div>
+          <div class="h5 mt-5">
+            Não encontrou o imóvel que procura?
+          </div>
+          <div>
+            Conte-nos como é o imóvel que você procura que nossa equipe fará uma busca especial para você.
+          </div>
+          <div class="mt-4">
+            <a href="encomende-seu-imovel" class="btn btn-lg btn-2 rounded-pill">
+              Encontre meu imóvel
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/if}
+
+    {block form_favoritos}
+    <section id="enviar-favoritos" class="dialog bg-body color-body rounded-5 col-11 col-md-5 max-vh-90">
+      <div class="p-4">
+
+        <div class="d-flex justify-content-between col-12 mb-3">
+          <h2 class="h2">
+            Enviar Imóveis Favoritos
+          </h2>
+          <a href="#" class="dialog-close">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+
+        <form class="validate-form" action="{$form_favoritos['action']}" method="post">
+
+          <div class="row">
+            {$form_favoritos['form']|noescape}
+          </div>
+
+          <div class="mb-2 d-flex justify-content-center">
+            {$form_favoritos['captcha']|noescape}
+          </div>
+
+          <div class="form-group col-md-12 text-center">
+            <button type="submit" class="btn btn-1 rounded-pill px-5">
+              Enviar Favoritos
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+    {/block}
+
+{/block}

@@ -1,0 +1,277 @@
+<div class="busca">
+  <form action="imoveis">
+
+    {foreach $busca['form']['hiddens'] as $option}
+    <input type="hidden" name="{$option['label']}" value="{$option['value']}">
+    {/foreach}
+
+    <div class="items px-1 position-relativex">
+
+      <div class="item">
+        <label>
+          Finalidade
+        </label>
+        <select name="status" class="selectpicker">
+          {foreach $busca['form']['status'] as $option}
+          <option value="{$option['id']}" n:attr="selected: $option['selected'] ? true : null">
+            {$option['nome']}
+          </option>
+          {/foreach}
+        </select>
+      </div>
+
+      <div class="item">
+        <label>
+          Tipo do Imóvel
+        </label>
+        <select
+          name="categoria"
+          multiple
+          class="select-checkbox d-none"
+          data-sc-search = "auto"
+          data-sc-full = "false"
+          data-sc-full-mobile = "false"
+          title="Tipo"
+          >
+          <option value=""></option>
+          {foreach $busca['form']['categoria'] as $option}
+          <option value="{$option['value']}" n:attr="selected:$option['selected']">
+            {$option['label']}
+          </option>
+          {/foreach}
+        </select>
+      </div>
+
+      <div class="item">
+        <label>
+          Cidade
+        </label>
+        <select
+          name="cidade"
+          class="select-checkbox d-none"
+          data-sc-search = "auto"
+          data-sc-full = "false"
+          data-sc-full-mobile = "false"
+          title="Cidade"
+          >
+          <option value=""></option>
+          {foreach $busca['form']['cidade'] as $option}
+          <option value="{$option['value']}" n:attr="selected:$option['selected']">
+            {$option['label']}
+          </option>
+          {/foreach}
+        </select>
+      </div>
+
+      <div class="item">
+        <label>
+          Bairro
+        </label>
+        <select
+          name="bairro"
+          multiple
+          class="select-checkbox d-none"
+          data-sc-search = "auto"
+          data-sc-full = "false"
+          data-sc-full-mobile = "false"
+          title="Bairro"
+          >
+          <option value=""></option>
+          {foreach $busca['form']['bairro'] as $option}
+          <option value="{$option['value']}" n:attr="selected:$option['selected']">
+            {$option['label']}
+          </option>
+          {/foreach}
+        </select>
+      </div>
+
+      <div class="item d-none">
+        <label>
+          Condomínio
+        </label>
+        <select
+          name="empreendimento"
+          multiple
+          class="select-checkbox d-none"
+          data-sc-search = "auto"
+          data-sc-full = "false"
+          data-sc-full-mobile = "false"
+          title="Condomínio"
+          >
+          <option value=""></option>
+          {foreach $busca['form']['empreendimento'] as $option}
+          <option value="{$option['value']}" n:attr="selected:$option['selected']">
+            {$option['label']}
+          </option>
+          {/foreach}
+        </select>
+      </div>
+
+      <div class="item">
+        <label>
+          Dormitórios
+        </label>
+        <div class="btn-group w-100" role="group" >
+          {foreach $busca['form']['dorm'] as $option}
+          <input type="checkbox"
+            class="btn-check"
+            name="dorm"
+            id="d-{$option['value']}-{$busca['id']}"
+            value="{$option['value']|replaceRE:'/[^0-9+]/', ''}"
+            n:attr="checked:$option['checked']">
+          <label for="d-{$option['value']}-{$busca['id']}"
+            class="btn btn-w brd-body btn-active-1">
+            {$option['value']|replaceRE:'/[^0-9+]/', ''}
+            </label>
+          {/foreach}
+        </div>
+      </div>
+
+      <div class="item">
+        <label>
+          Suítes
+        </label>
+        <div class="btn-group w-100" role="group" >
+          {foreach $busca['form']['suites'] as $option}
+          <input type="checkbox"
+            class="btn-check"
+            name="suites"
+            id="s-{$option['value']}-{$busca['id']}"
+            value="{$option['value']|replaceRE:'/[^0-9+]/', ''}"
+            n:attr="checked:$option['checked']">
+          <label for="s-{$option['value']}-{$busca['id']}"
+            class="btn btn-w brd-body btn-active-1">
+            {$option['value']|replaceRE:'/[^0-9+]/', ''}
+          </label>
+          {/foreach}
+        </div>
+      </div>
+
+      <div class="item">
+        <label>
+          Vagas
+        </label>
+        <div class="btn-group w-100" role="group" >
+          {foreach $busca['form']['vagas'] as $option}
+          <input type="checkbox"
+            class="btn-check"
+            name="vagas"
+            id="v-{$option['value']}-{$busca['id']}"
+            value="{$option['value']|replaceRE:'/[^0-9+]/', ''}"
+            n:attr="checked:$option['checked']">
+          <label for="v-{$option['value']}-{$busca['id']}" class="btn btn-w brd-body btn-active-1">
+            {$option['value']|replaceRE:'/[^0-9+]/', ''}
+          </label>
+          {/foreach}
+        </div>
+      </div>
+
+      <div class="item min">
+        <label>
+          Valor mínimo
+        </label>
+        <input
+          type="text"
+          name="valor_de"
+          value="{$busca['form']['valor_de']}"
+          class="form-control mask-moeda"
+          placeholder="R$ min"
+          list="list_de_{$busca['id']}"
+          >
+          <datalist id="list_de_{$busca['id']}">
+            {foreach $busca['form']['valores'] as $option}
+              <option value="{$option}">{$option}</option>
+            {/foreach}
+          </datalist>
+      </div>
+
+      <div class="item max">
+        <label>
+          Valor máximo
+        </label>
+        <input
+          type="text"
+          name="valor_ate"
+          value="{$busca['form']['valor_ate']}"
+          class="form-control mask-moeda"
+          placeholder="R$ max"
+          list="list_ate_{$busca['id']}"
+          >
+          <datalist id="list_ate_{$busca['id']}">
+            {foreach $busca['form']['valores'] as $option}
+              <option value="{$option}">{$option}</option>
+            {/foreach}
+          </datalist>
+      </div>
+
+      <div class="item minx d-none">
+        <label>
+          Área mínima
+        </label>
+        <input
+          type="text"
+          name="area_de"
+          value="{$busca['form']['area_de']}"
+          class="form-control mask-moeda"
+          placeholder="Área m2"
+          >
+      </div>
+
+      <div class="item max d-none">
+        <label>
+          Área máxima
+        </label>
+        <input
+          type="text"
+          name="area_ate"
+          value="{$busca['form']['area_ate']}"
+          class="form-control mask-moeda area"
+          placeholder="m2"
+          >
+      </div>
+
+      <div class="item">
+        <label>
+          Características
+        </label>
+        {foreach $busca['form']['tags'] as $option}
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox"
+            name="carac"
+            id="{$option['value']}"
+            value="{$option['value']}"
+            n:attr="checked:$option['checked']">
+          <label class="form-check-label" for="{$option['value']}">
+            {$option['label']}
+          </label>
+        </div>
+        {/foreach}
+      </div>
+
+      <div class="item">
+        <label>
+          Busque pelo código
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          name="codigo"
+          title="Código"
+          placeholder="Código..."
+          value="{$busca['form']['q']}"
+        >
+      </div>
+
+      <div class="item d-none">
+        <button
+          type="submit" name="Buscar" aria-label="Buscar"
+          class="btn-buscar btn btn-1 loading">
+            <i class="fa fa-search"></i>
+            <span class="btn-buscar-label">Buscar Imóveis</span>
+        </button>
+      </div>
+
+    </div>
+
+  </form>
+</div>

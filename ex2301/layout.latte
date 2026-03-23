@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="content-language" content="pt-br" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>{$site['title']}</title>
+  <meta name="description" content="{$site['desc']}" />
+  <meta name="theme-color" content="{$design['color_header']}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2,viewport-fit=cover">
+
+  {$site['meta']|noescape}
+
+  <base href="{$site['dominio']}">
+
+  <meta property="domain" content="{$site['dominio']}" />
+  <meta property="og:type"  content="website" />
+  <meta property="og:site_name" content="{$site['nome']}">
+  <meta property="og:url" content="{$site['canonical']}">
+  <meta property="og:title" content="{$site['title']}" />
+  <meta property="og:description" content="{$site['desc']}">
+  <meta property="og:image" content="{$site['img']}" />
+  <meta property="og:locale" content="pt_BR">
+
+  <link rel="shortcut icon" href="{$site['ico']}" />
+  <link rel="canonical" href="{$site['canonical']}" />
+
+ <style>
+  :root {
+    --color_1                : {$design['color_1']|noescape};
+    --color_1_rgb            : {$design['color_1_rgb']|noescape};
+    --color_2                : {$design['color_2']|noescape};
+    --color_2_rgb            : {$design['color_2_rgb']|noescape};
+    --color_3                : {$design['color_3']|noescape};
+    --color_3_rgb            : {$design['color_3_rgb']|noescape};
+    --color_header           : {$design['color_header']|noescape};
+    --color_header_rgb       : {$design['color_header_rgb']|noescape};
+    --color_header_font      : {$design['color_header_font']|noescape};
+    --color_body             : {$design['color_body']|noescape};
+    --color_body_rgb         : {$design['color_body_rgb']|noescape};
+    --color_body_font        : {$design['color_body_font']|noescape};
+    --color_body_font_rgb    : {$design['color_body_font_rgb']|noescape};
+    --color_footer           : {$design['color_footer']|noescape};
+    --color_footer_rgb       : {$design['color_footer_rgb']|noescape};
+    --color_footer_font      : {$design['color_footer_font']|noescape};
+    --swiper-theme-color     : var(--color_1);
+  }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700">
+
+  <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="plugins/core/bootstrap.css">
+  <link rel="stylesheet" href="plugins/css/aos.css">
+  <link rel="stylesheet" href="plugins/css/animate.css.min.css">
+  <link rel="stylesheet" href="plugins/css/bootstrap-select.css">
+  <link rel="stylesheet" href="plugins/css/jquery.fancybox.css">
+  <link rel="stylesheet" href="plugins/css/swiper.css">
+  <link rel="stylesheet" href="plugins/css/leaflet.css">
+  <link rel="stylesheet" href="plugins/css/leaflet.MarkerCluster.css">
+  <link rel="stylesheet" href="plugins/css/leafletMarkerCluster.Default.css">
+  <link rel="stylesheet" href="plugins/css/toastr.css">
+  <link rel="stylesheet" href="css/util.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/mapa.css">
+  <link rel="stylesheet" href="css/dialog.css">
+  <link rel="stylesheet" href="css/select-checkbox.css">
+  <!-- //CSS -->
+
+  <link rel="preload" as="style" href="css/main.min.css">
+  <link rel="stylesheet" href="css/main.min.css">
+
+  {foreach $scripts['head'] as $script}
+  {$script|noescape}
+  {/foreach}
+
+  <script type="application/ld+json">
+  {$schema|noescape}
+  </script>
+
+  {block headExtra}{/block}
+
+</head>
+
+{block bodyTag}<body class="{block bodyClass}pg-default{/block}">{/block}
+
+  {foreach $scripts['body'] as $script}
+  {$script|noescape}
+  {/foreach}
+
+  <header id="header" >
+
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+
+        <div class="logo">
+          <a href="{$site['dominio']}">
+            <img src="{$site['logo']}" alt="{$site['nome']}">
+          </a>
+        </div>
+
+        <div class="navbar align-items-startx pr-0">
+
+          <nav class="nav">
+
+            <div class="float-end close-menu-mobile mr-3">
+              <a href="#" class="prevent">
+                <i class="fa fa-times fa-2x"></i>
+              </a>
+            </div>
+
+            <div class="menu">
+              <ul class="nav d-block d-lg-flex justify-content-md-between align-items-center">
+
+                {foreach $menu as $secao => $items}
+
+                  {if $items['total']==1 }
+
+                    {foreach $items['paginas'] as $menu_items}
+                      <li>
+                        <a class="menu-link" href="{$menu_items['url']}" target="{$menu_items['target']}">
+                          {$menu_items['titulo']}
+                        </a>
+                      </li>
+                    {/foreach}
+
+                  {else}
+
+                    <li>
+                      <a class="menu-link stop collapsed" href="#{$secao}" data-bs-toggle="collapse">
+                        {$secao}
+                        <i class="fa fa-angle-down"></i>
+                      </a>
+                    </li>
+
+                    <div class="sub-menu collapse" id="{$secao}">
+                      {foreach $items['paginas'] as $menu_items}
+                      <li>
+                        <a class="menu-link" href="{$menu_items['url']}" target="{$menu_items['target']}">
+                          {$menu_items['titulo']}
+                        </a>
+                      </li>
+                      {/foreach}
+                    </div>
+
+                  {/if}
+
+                {/foreach}
+
+                <li class="d-flex justify-content-between">
+                  <a href="imoveis-favoritos"
+                    class="tt position-relative"
+                    title="Meus Favoritos"
+                    data-container=".navbar">
+                    <span class="d-inline-block d-md-none">Meu Favoritos</span>
+                    <i class="fa fa-heart"></i>
+                    <span class="notify fav-num bg-color-3"></span>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="translate d-lg-flex align-items-center ms-2 mt-4 mt-md-0 hidden" translate="no">
+              <a href="#" data-lang="pt" class="pl-1 tt" title="Português">
+                <img src="https://img.icons8.com/color/48/brazil-circular.png" alt="Brasil" width="24" height="24"/>
+              </a>
+              <a href="#" data-lang="en" class="pl-1 tt" title="English">
+                <img src="https://img.icons8.com/color/48/usa-circular.png" alt="Brasil" width="24" height="24"/>
+              </a>
+              <a href="#" data-lang="es" class="pl-1 tt" title="Spanish">
+                <img src="https://img.icons8.com/color/48/spain-circular.png" alt="Brasil" width="24" height="24"/>
+              </a>
+            </div>
+
+          </nav>
+
+        </div>
+
+        <div class="open-menu-mobile">
+          <a href="#">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  {block content}{/block}
+
+  <footer class="border-top brd-body">
+
+    <div class="container py-4 py-md-5">
+      <div class="row">
+
+        <div class="col-md-4 mt-4 mt-md-0">
+
+          <div class="logo w-80 d-none d-md-block">
+            <a href="./" class="d-inline-block">
+              <img src="{$site['logo']}" alt="{$site['nome']}" class="w-100">
+            </a>
+          </div>
+
+          <div class="h4 mb-3 d-block d-md-none">
+            {$site['nome']}
+          </div>
+
+          <div class="desc mt-4 pe-5 text-1x text-md-2">
+            {$site['descricao']|noescape}
+          </div>
+
+          <div class="sopcial mt-4">
+            <ul class="nav d-flex justify-content-md-betweenx text-6">
+              {foreach $social as $item}
+              <li class="me-2">
+                <a href="{$item['url']}" target="_blank" class="social tt" title="{$item['title']}" aria-label="{$item['title']}">
+                  <i class="fab {$item['class']}"></i>
+                </a>
+              </li>
+              {/foreach}
+            </ul>
+          </div>
+
+        </div>
+
+        {if $contato['endereco'] || $contato['whatsapp'] || $contato['telefone']}
+        <div class="col-12 col-md-4 mt-4 mt-md-0">
+
+          <div class="h5 mb-3">
+            Contato
+          </div>
+
+          <div>
+            {$contato['endereco']|noescape}
+          </div>
+
+          {if $contato['gmaps']}
+          <div class="link-map mt-1">
+            <a href="{$contato['gmaps']}" target="_blank">
+              <i class="fas fa-map-marker-alt"></i>
+              Como chegar
+            </a>
+          </div>
+          {/if}
+
+          <div class="mt-3">
+            {if $contato['telefone']}
+            <div class="mt-1">
+              <a class="link-fone"
+                href="tel:{$contato['telefone-num']}">
+                <i class="fa fa-phone me-1"></i>
+                {$contato['telefone']}
+              </a>
+            </div>
+            {/if}
+
+            {if $contato['whatsapp']}
+            <div class="mt-1">
+              <a class="link-whats"
+                href="https://api.whatsapp.com/send?phone={$contato['whatsapp-num']}&text={$whatsapp['msg']}"
+                target="_blank">
+                <i class="fab fa-whatsapp me-1"></i>
+                {$contato['whatsapp']}
+              </a>
+            </div>
+            {/if}
+          </div>
+
+        </div>
+        {/if}
+
+        {if $contatos[1] }
+        <div class="col-12 col-md-4 mt-4 mt-md-0">
+
+          <div class="h5 mb-3">
+            Contatos
+          </div>
+
+          {foreach $contatos as $contato}
+          <div class="mb-4">
+
+            <div class="h6 my-2 color-1">
+              {$contato['nome']}
+            </div>
+
+            <div class="text-1 text-md-2">
+              <a class="link-map"
+                href="{$contato['gmaps']}" target="_blank">
+                {$contato['endereco']|noescape}
+              </a>
+            </div>
+
+            {if $contato['telefone']}
+            <div class="text-1 text-md-2">
+              <span class="d-block d-none">
+                Fone
+              </span>
+              <a class="link-fone"
+                href="tel:{$contato['telefone-num']}">
+                <i class="fa fa-phone me-1"></i>
+                {$contato['telefone']}
+              </a>
+            </div>
+            {/if}
+
+            {if $contato['whatsapp']}
+            <div class="text-1 text-md-2">
+              <span class="d-block d-none">
+                Whatsapp
+              </span>
+              <a class="link-whats"
+                href="https://api.whatsapp.com/send?phone={$contato['whatsapp-num']}&text={$whatsapp['msg']}"
+                target="_blank">
+                <i class="fab fa-whatsapp me-1"></i>
+                {$contato['whatsapp']}
+              </a>
+            </div>
+            {/if}
+
+          </div>
+          {/foreach}
+
+        </div>
+        {/if}
+
+        <div class="col-12 col-md-2 mt-4 mt-md-0 d-none">
+
+          <div class="h5 mb-3">
+            Mapa do site
+          </div>
+
+          <ul class="nav d-block text-1 text-md-2">
+            {foreach $menu as $secao => $items}
+              {foreach $items['paginas'] as $pagina}
+              <li class="">
+                <a href="{$pagina['url']}" target="{$pagina['target']}">
+                  {$pagina['titulo']}
+                </a>
+              </li>
+              {/foreach}
+            {/foreach}
+          </ul>
+
+        </div>
+
+        <div class="col-12 col-md-3 mt-4 mt-md-0">
+
+          <div class="h5 mb-3">
+            Imóveis
+          </div>
+
+          <ul class="nav d-block text-1 text-md-2">
+            {foreach $categorias as $categoria}
+            <li class="">
+              <a href="imoveis?categoria={$categoria['url']}" target="_parent">
+                {$categoria['title']}
+              </a>
+            </li>
+            {/foreach}
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+  <div class="copyright">
+    <div class="container">
+      <div class="d-block d-lg-flex justify-content-between">
+        <div class="text-1 text-md-2">
+          {$site['nome']}.
+          As informações e valores de imóveis deste site estão sujeitas a alterações sem aviso prévio.
+        </div>
+        <div class="">
+          <a href="https://www.fullbiz.com.br" target="_blank">
+            <img src="img/fullbiz.svg" alt="Fullbiz">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="aceitar-cookies" class="d-none fixed-bottom border-top bg-body brd-body">
+
+    <div class="container">
+
+      <div class="d-block d-md-flex align-items-center justify-content-between">
+
+        <div class="d-flex p-2">
+          <div>
+            Usamos cookies para personalizar e melhorar sua experiência no site.
+            <a href="#cookie-info" data-toggle="collapse" class="color-1">
+              Saiba mais
+            </a>
+            <div id="cookie-info" class="collapse">
+              Usamos cookies para funcionalidades como: salvar sua lista de favoritos, exibir ou ocultar informações quando você retorna ao site.
+              <br>
+              Coletamos informações como e-mail e telefone em formulários para poder retornar seu contato.
+              <a href="#cookie-info" class="collapse color-1">
+                Ok, entendi.
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-grow-1 p-2">
+          <button class="btn btn-sm btn-1 btn-aceitar-cookies">
+            Aceitar Cookies
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JS -->
+  <script src="plugins/core/jquery.js"></script>
+  <script src="plugins/core/bootstrap.js"></script>
+  <script src="plugins/js/bootstrap-select-br.js"></script>
+  <script src="plugins/js/jquery.cookie.js"></script>
+  <script src="plugins/js/jquery.fancybox.min.js"></script>
+  <script src="plugins/js/jquery.maskedinput.js"></script>
+  <script src="plugins/js/jquery.maskmoney.js"></script>
+  <script src="plugins/js/leaflet.js"></script>
+  <script src="plugins/js/leaflet.markercluster.js"></script>
+  <script src="plugins/js/leaflet.geosearch.js"></script>
+  <script src="plugins/js/swiper.js"></script>
+  <script src="plugins/js/aos.js"></script>
+  <script src="plugins/js/autosize.min.js"></script>
+  <script src="plugins/js/jquery.youtube-background.js"></script>
+  <script src="plugins/js/jquery.lazy.min.js"></script>
+  <script src="plugins/js/jquery.lazy.plugins.min.js"></script>
+  <script src="plugins/js/toastr.min.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/favoritos.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/leaflet.map.js"></script>
+  <script src="js/leaflet.cluster.js"></script>
+  <script src="js/aceita.cookies.js"></script>
+  <script src="js/dialog.js"></script>
+  <script src="js/unload.js"></script>
+  <script src="js/select-checkbox.js"></script>
+  <script src="js/main.js"></script>
+  <!-- //JS -->
+
+  <script src="js/main.min.js"></script>
+
+  {foreach $scripts['footer'] as $script}
+  {$script|noescape}
+  {/foreach}
+
+  {block jsExtra}{/block}
+
+</body>
+
+</html>

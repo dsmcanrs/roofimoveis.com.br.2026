@@ -1,0 +1,25 @@
+<div class="card-post position-relative overflow-hidden">
+  <a href="{$post['url']}">
+    <div class="position-absolute top-0 z-index-1 p-3">
+      <strong class="text-white">
+        {$post['tipo']}
+      </strong>
+    </div>
+    <div class="foto position-relative w-100 overflow-hidden gradient-top rounded-4 vh-30">
+      <img src="{$post['img']}" class="img-fit " alt="{$post['titulo']}">
+    </div>
+  </a>
+  <a href="{$post['url']}">
+    <div class="titulo pt-4">
+      <span class="small">
+        {$post['data']}
+      </span>
+      <h3 class="h4 color-1">
+        {$post['titulo']}
+      </h3>
+    </div>
+    <div class="texto pt-2">
+      {$post['chamada']}
+    </div>
+  </a>
+</div>

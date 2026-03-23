@@ -1,0 +1,128 @@
+# Teste no Terminal
+# curl -A "TikTokSpider" -I alexvieiraimoveis.com.br
+
+# Bloquear Bots
+BrowserMatchNoCase "MJ12bot" badbots
+BrowserMatchNoCase "Baiduspider" badbots
+BrowserMatchNoCase "DotBot" badbots
+BrowserMatchNoCase "AlphaBot" badbots
+BrowserMatchNoCase "AlphaBot" badbots
+BrowserMatchNoCase "Heritrix" badbots
+BrowserMatchNoCase "rogerbot" badbots
+BrowserMatchNoCase "SeznamBot" badbots
+BrowserMatchNoCase "Bytespider" badbots
+BrowserMatchNoCase "ZumBot" badbots
+BrowserMatchNoCase "YandexBot" badbots
+BrowserMatchNoCase "Bytespider" badbots
+BrowserMatchNoCase "Silk-Accelerated" badbots
+BrowserMatchNoCase "SeekportBot" badbots
+BrowserMatchNoCase "DataForSeoBot" badbots
+BrowserMatchNoCase "SemrushBot" badbots
+BrowserMatchNoCase "AwarioBot" badbots
+BrowserMatchNoCase "Presto" badbots
+BrowserMatchNoCase "petalbot" badbots
+BrowserMatchNoCase "AITrainingBot" badbots
+BrowserMatchNoCase "TikTokSpider" badbots
+BrowserMatchNoCase "AhrefsBot" badbots
+BrowserMatchNoCase "Amazonbot" badbots
+BrowserMatchNoCase "Applebot" badbots
+BrowserMatchNoCase "meta-externalagent" badbots
+# BrowserMatchNoCase "Googlebot" badbots
+# BrowserMatchNoCase "GoogleOther" badbots
+# BrowserMatchNoCase "Bingbot" badbots
+# BrowserMatchNoCase "GPTBot" badbots
+# BrowserMatchNoCase "meta-externalads" badbots
+# BrowserMatchNoCase "facebookexternalhit" badbots
+# BrowserMatchNoCase "postman" badbots
+
+# Usando Require para Apache 2.4+
+<RequireAll>
+    Require all granted
+    Require not env badbots
+    Require not ip 185.177.72.51
+</RequireAll>
+
+
+# -----------------------------------------------------------------------------
+
+<IfModule mod_deflate.c>
+   SetOutputFilter DEFLATE
+</IfModule>
+<IfModule mod_headers.c>
+   Header set Cache-Control "public, max-age=3600"
+   <FilesMatch ".(png|jpg|jpeg|gif|svg|ico|css|map|woff|woff2|eot|ttf)$">
+      Header set Cache-Control "max-age=31536000, public"
+   </FilesMatch>
+   <FilesMatch ".(css|js)$">
+      Header set Cache-Control "max-age=31536000, public"
+   </FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+   <FilesMatch "\.(png|jpg|jpeg|gif|svg|ico|css|map|woff|woff2|eot|ttf|js|csv|pdf|json)">
+      ExpiresActive on
+      ExpiresDefault "access plus 4 weeks"
+   </FilesMatch>
+</IfModule>
+
+Options -Indexes
+
+RewriteEngine On
+
+# Redirecionar URL Alternativa
+# RewriteCond %{HTTP_HOST} ^(www\.)?exclusivesul\.siteexpresso\.com\.br$ [NC]
+# RewriteRule ^(.*)$ https://www.exclusivesul.com.br/$1 [R=301,L]
+
+# SSL
+RewriteCond %{HTTP_HOST} !localhost
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# WWW
+RewriteCond %{HTTP_HOST} !localhost
+RewriteCond %{HTTP_HOST} !siteexpresso
+RewriteCond %{HTTP_HOST} !fullbiz.net.br
+RewriteCond %{HTTP_HOST} !^www
+RewriteRule (.*) https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ---
+
+# # URLs Amigáveis (ERRO)
+# O nome da url amigáveil não pode ser igual ao nome do arquivo.php
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+
+# custom
+RewriteRule ^(venda|vendas)$ imoveis.php?status=venda [N,QSA]
+RewriteRule ^(locacao|locacoes|aluguel)$ imoveis.php?status=aluguel [N,QSA]
+RewriteRule ^(lancamento|lancamentos)$ imoveis.php?situacao=lancamento,em+construcao [N,QSA]
+
+# blog
+RewriteRule ^(blog|blog/)$ blog-lista.php [N,QSA]
+RewriteRule ^(blog+),([A-Za-z0-9-_]+),([0-9]+)$ blog-post.php?id=$3 [N,QSA]
+RewriteRule ^(blog+),([A-Za-z0-9-_]+)$ blog-lista.php?secao=$2 [N,QSA]
+RewriteRule ^(blog+)/([A-Za-z0-9-_]+)$ blog-lista.php?secao=$2 [N,QSA]
+RewriteRule ^(blog+)/([A-Za-z0-9-_]+)/([0-9]+)$ blog-post.php?id=$3 [N,QSA]
+
+# corretor
+RewriteRule ^(corretor+)/([A-Za-z0-9-_]+)$ imoveis-corretor.php?nome=$2 [N,QSA]
+
+# selecao de imoveis
+RewriteRule ^(selecao|selecionados|imoveis-selecionados+)/([A-Za-z0-9-,_]+)$ imoveis-selecao.php?selecao=$2 [N,QSA]
+
+# imovel
+RewriteRule ^(detalhes)$ imoveis-detalhes.php [N,QSA]
+RewriteRule ^([A-Za-z0-9-.,_]+),([0-9]+)$ imoveis-detalhes.php?id=$2 [N,QSA]
+RewriteRule ^(imovel+)/([A-Za-z0-9-.,_]+)/([0-9]+)$ imoveis-detalhes.php?id=$3 [N,QSA]
+
+# paginas
+RewriteRule ^([A-Za-z0-9-_]+),([A-Za-z0-9-_]+)$ pagina.php?secao=$1&pagina=$2 [N,QSA]
+RewriteRule ^([A-Za-z0-9-_]+)$ pagina.php?pagina=$1 [N,QSA]
+
+# default
+RewriteRule ^sitemap\.xml$ sitemap.php [N]
+
+# error
+# ErrorDocument 404 "ERROR 404 - PAGE NOT FOUND"
+ErrorDocument 404 /404.php

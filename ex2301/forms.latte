@@ -1,0 +1,128 @@
+{foreach $fields as $field}
+
+    {if $field['group']!='' }
+    <div class="float-left col-md-12 mt-3 mb-2">
+        <h2 class="h3">
+            {$field['group']|noescape}
+        </h2>
+    </div>
+    {/if}
+
+    {if $field['text']!='' }
+        <div class="float-left col-md-12 mb-2">
+            {$field['text']|noescape}
+        </div>
+    {/if}
+
+    {if $field['type']=='hidden' }
+        <input type="hidden" name="{$field['name']}" value="{$field['value']}">
+    {/if}
+
+    {if $field['type']!='hidden' }
+    <div class="float-left form-group col-{$field['col-sm']} col-md-{$field['col-md']}">
+
+        {if $field['type']=='text' || $field['type']=='number' || $field['type']=='url' || $field['type']=='email' }
+            <label class="control-label" for="{$field['name']}">
+                {$field['label']}
+            </label>
+            <input
+            type="{$field['type']}"
+            name="{$field['name']}"
+            class="form-control {$field['class']}"
+            value="{$field['value']}"
+            placeholder="{$field['placeholder']}"
+            >
+        {/if}
+
+        {if $field['type']=='textarea' }
+            <label class="control-label" for="{$field['name']}">
+                {$field['label']}
+            </label>
+            <textarea
+            name="{$field['name']}"
+            class="form-control {$field['class']}"
+            rows="{$field['rows']}"
+            placeholder="{$field['placeholder']}">{$field['value']}</textarea>
+        {/if}
+
+        {if $field['type']=='select' }
+            <label class="control-label" for="{$field['name']}">
+                {$field['label']}
+            </label>
+            <select name="{$field['name']}" class="form-control {$field['class']}">
+                <option value="">
+                    {$field['placeholder']}
+                </option>
+                {foreach $field['value'] as $option}
+                <option value="{$option}">{$option}</option>
+                {/foreach}
+            </select>
+        {/if}
+
+        {if $field['type']=='datalist' }
+            <label class="control-label" for="{$field['name']}">
+                {$field['label']}
+            </label>
+            <input list="{$field['name']}-list" name="{$field['name']}" class="form-control {$field['class']}">
+            <datalist id="{$field['name']}-list">
+                {foreach $field['value'] as $option}
+                <option value="{$option}">
+                {/foreach}
+            </datalist>
+        {/if}
+
+        {if $field['type']=='checkbox' }
+            <div class="form-check">
+                <input type="{$field['type']}" class="form-check-input {$field['class']}" name="{$field['name']}" id="{$field['name']}" value="{$field['value']}">
+                <label class="form-check-label text-truncate" for="{$field['name']}">
+                    {$field['label']}
+                </label>
+            </div>
+        {/if}
+
+        {if $field['type']=='radio' }
+            <label class="control-label" for="{$field['name']}">
+                {$field['label']}
+            </label>
+            <div class="d-flex">
+                {foreach $field['value'] as $option}
+                <div class="form-check me-3">
+                    <input type="{$field['type']}" class="form-check-input {$field['class']}" name="{$field['label']}" id="{$option}" value="{$option}">
+                    <label class="form-check-label text-truncate" for="{$option}">
+                        {$option}
+                    </label>
+                </div>
+                {/foreach}
+            </div>
+        {/if}
+
+        {if strpos($field['type'], 'file') !== false }
+
+            <label class="control-label" for="{$field['name']}">
+                {$field['label']}
+            </label>
+            <div class="file-drop-area border border-dashed brd-2">
+                <span class="btn brd-1 color-1">
+                    Selecione
+                </span>
+                <span class="msg ms-3">
+                    ou arraste seus arquivos aqui.
+                </span>
+                <input
+                    type="file"
+                    class="form-control {$field['class']}"
+                    name="{$field['name']}"
+                    n:attr="multiple: $field['multiple']"
+                    onchange="fileInputChange(event)"
+                    ondrop=fileInputDrop(event)
+                    >
+            </div>
+        {/if}
+
+    </div>
+    {/if}
+
+
+{/foreach}
+
+<div class="clearfix"></div>

@@ -1,0 +1,92 @@
+<?php
+
+function anti_flood($settings=null) {
+
+    // echo "<pre>";
+    // var_export($control);
+
+    $ipUsuario = $_SERVER['REMOTE_ADDR'];
+    // $ipUsuario = preg_replace("/[^0-9]/",'',$ipUsuario);
+
+    $rootDir = dirname(__DIR__);
+    $floodDir = "{$rootDir}/flood/";
+    $floodDB = "{$rootDir}/flood/control";
+    $pagina = basename($_SERVER['PHP_SELF'],'.php');
+
+    @mkdir($floodDir);
+
+    // Limite requisições por intervalo
+    $limiteRequisicoes = 3;
+
+    // Intervalo de tempo verificado
+    $intervaloSegundos = 1;
+
+    // Tempo de punição
+    $tempoPunicao = 5;
+
+    // Leitura DB
+    if( !file_exists($floodDB) ){
+        touch($floodDB);
+    }else{
+        $control = json_decode(file_get_contents($floodDB), true);
+    }
+
+    // echo "<pre>";
+    // var_export($control);
+
+    // Verifica parâmetros
+    if( is_array($settings) ){
+        if( !empty($settings['limite']) ) $limiteRequisicoes = $settings['limite'];
+        if( !empty($settings['intervalo']) ) $intervaloSegundos = $settings['intervalo'];
+        if( !empty($settings['punicao']) ) $tempoPunicao = $settings['punicao'];
+    }
+
+    // Inicializa a variável de sessão se não existir
+    if (!isset($control[$ipUsuario][$pagina]['qtdRequisicoes'])) {
+
+        $control[$ipUsuario][$pagina]['ultimoAcesso'] = time();
+        $control[$ipUsuario][$pagina]['qtdRequisicoes'] = 1;
+
+    } else {
+
+        // Verifica se foi banido e se o tempo de banimento já foi atingido
+        if( isset($control[$ipUsuario][$pagina]['Bloqueado']) ){
+            if (time()-$control[$ipUsuario][$pagina]['Bloqueado'] > $tempoPunicao) {
+                $control[$ipUsuario][$pagina]['qtdRequisicoes'] = 0;
+                unset($control[$ipUsuario][$pagina]['Bloqueado']);
+            }else{
+                echo "\nExcesso de requisições. Aguarde um momento e tente novamente.";
+                die;
+            }
+        }
+
+        // Calcula o intervalo desde o último acesso
+        $intervalo = time() - $control[$ipUsuario][$pagina]['ultimoAcesso'];
+
+        // Verifica se o intervalo é menor que o intervalo em segundos
+        if ($intervalo <= $intervaloSegundos) {
+
+            // Incrementa a contagem de requisições
+            $control[$ipUsuario][$pagina]['qtdRequisicoes']++;
+
+            // Verifica se a contagem atingiu o limite
+            if ($control[$ipUsuario][$pagina]['qtdRequisicoes'] >= $limiteRequisicoes) {
+                $control[$ipUsuario][$pagina]['Bloqueado'] = time();
+            }
+
+        } else {
+            $control[$ipUsuario][$pagina]['qtdRequisicoes'] = 1;
+        }
+
+        // Atualiza a variável de sessão com o novo timestamp
+        $control[$ipUsuario][$pagina]['ultimoAcesso'] = time();
+
+    }
+
+    file_put_contents($floodDB, json_encode($control));
+
+}
+
+if( basename($_SERVER['PHP_SELF'],'.php')!='busca-filtro' ){
+    anti_flood();
+}

@@ -1,0 +1,328 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-home{/block}
+
+{block content}
+
+    <main id="main">
+
+      <div class="d-flex flex-column position-relative">
+
+        {block fullbanner}
+        <section class="swiper-container position-relative overflow-hidden" data-autoplay="10000">
+          <div class="swiper-wrapper">
+
+            {foreach $fullbanner as $fullbanner}
+            <div class="swiper-slide bg-dark">
+
+              {if $fullbanner['video']!='' }
+              <div class="bg w-100 vh-40 vh-md-90">
+                <div class="banner-video" data-youtube="https://youtu.be/{$fullbanner['video']}"></div>
+              </div>
+              {else}
+              <div class="bg opacity-8 w-100 vh-50 vh-md-100 gradient-top">
+                <div class="banner-img w-100 h-100">
+                  <img src="{$fullbanner['lg']}" alt="{$fullbanner['titulo']}" class="img-fit" loading="lazy">
+                  <div class="swiper-lazy-preloader spinner"></div>
+                </div>
+              </div>
+              {/if}
+
+              <div class="fg d-flex position-absolute align-items-center align-items-lg-end top-0 w-100 h-100 vh-lg-50 py-4">
+                <div class="container d-flex flex-column">
+
+                  {if $fullbanner['mostrar_texto']==1 }
+                  <div class="text-white text-center w-100">
+                    <a href="{$fullbanner['link']}" target="{$fullbanner['target']}" title="{$fullbanner['titulo']}">
+                      {if $iterator->isFirst()}
+                      <h1 class="info-1 text-shadow-2 text-9 text-xl-18 fw-300">
+                        {$fullbanner['titulo']|noescape}
+                      </h1>
+                      {else}
+                      <h2 class="info-1 text-shadow-2 text-9 text-xl-18 fw-300">
+                        {$fullbanner['titulo']|noescape}
+                      </h2>
+                      {/if}
+                      <div class="info-2 text-shadow-2 text-3 text-md-6 fw-light py-2">
+                        {$fullbanner['texto']|noescape}
+                      </div>
+                    </a>
+                  </div>
+                  {/if}
+
+                </div>
+              </div>
+
+            </div>
+            {/foreach}
+
+          </div>
+
+          <div class="w-100 position-absolute bottom-0 z-index-1 py-4">
+            <div class="pagination d-flex col-md-12 justify-content-center"></div>
+          </div>
+
+        </section>
+        {/block}
+
+        {block busca}
+        <section class="form-busca w-100">
+          <div class="container w-12 w-md-8 py-4 py-md-0">
+
+            <div class="busca-menu d-none d-md-flex justify-content-center mb-3 mx-auto">
+              {foreach $busca['form']['status'] as $option}
+              <a href="#" data-busca="{$option['id']}"
+                class="prevent position-relative btn rounded-pill btn-2 mx-1 {$option['active']}">
+                {$option['nome']}
+              </a>
+              {/foreach}
+            </div>
+
+            {include 'busca.latte'}
+
+          </div>
+        </section>
+        {/block}
+
+      </div>
+
+      {block destaques}
+      {foreach $destaques as $destaques}
+      {if count($destaques['imoveis']) > 0}
+      <section class="imoveis">
+        <div class="container mt-3 mt-lg-4 pt-3">
+
+          <div class="mb-4">
+            <h2 class="h1 text-center" data-aos="fade">
+              {$destaques['titulo']}
+            </h2>
+          </div>
+
+          <div class="swiper-container overflow-hidden" data-sm="1,20" data-md="2,20" data-lg="3,20" data-aos="fade">
+            <div class="swiper-wrapper">
+              {foreach $destaques['imoveis'] as $imovel}
+              <div class="swiper-slide mb-5">
+                {include 'card-imovel.latte' imovel:$imovel}
+              </div>
+              {/foreach}
+            </div>
+            <div class="pagination d-flex col-md-12 justify-content-center"></div>
+          </div>
+
+        </div>
+      </section>
+      {/if}
+      {/foreach}
+      {/block}
+
+      <div class="mb-5"></div>
+
+      {block banner}
+      {if $banner }
+      <section class="chamadas bg-secondary border-top brd-body">
+        <div class="container py-5">
+
+          <div class="text-center d-none">
+            <h2 class="h2 mb-4">
+              Como a {$site['nome']} pode te ajudar?
+            </h2>
+          </div>
+
+          <div class="row d-flex justify-content-center">
+
+            {foreach $banner as $banner}
+            <div class="banner col-md-3 mb-4 mb-md-0">
+
+              <a href="{$banner['link']}" title="{$banner['titulo']}">
+
+                {if $banner['img']!=''}
+
+                <div class="bg-dark rounded-4 position-relative overflow-hidden">
+                  <div class="bg opacity-5 gradient-bottom min-vh-20 vh-md-40">
+                    <img
+                      class="img-fit lazy"
+                      src="img/1px.png"
+                      data-src="{$banner['img']}"
+                      alt="{$banner['titulo']}"
+                      >
+                  </div>
+                  {if $banner['mostrar_texto']==1 }
+                  <div class="fg position-absolute d-flex align-items-end top-0 w-100 h-100 p-3">
+                    <div class="container d-flex flex-column text-white text-center">
+                      <div class="info-1 text-5 text-xl-7 text-shadow-2">
+                        {$banner['titulo']}
+                      </div>
+                      <div class="info-2 text-md-3x py-2 text-shadow-2">
+                        {$banner['texto']}
+                      </div>
+                    </div>
+                  </div>
+                  {/if}
+                </div>
+
+                {else}
+
+                <div class="bg-body rounded-4 border brd-body vh-20 position-relative overflow-hidden">
+                  {if $banner['mostrar_texto']==1 }
+                  <div class="d-flex align-items-center top-0 w-100 h-100 color-body">
+                    <div class="container d-flex flex-column text-center">
+                      <div class="info-2 text-3 text-xl-5">
+                        {$banner['titulo']}
+                      </div>
+                      <div class="info-2 text-2 py-2">
+                        {$banner['texto']}
+                      </div>
+                    </div>
+                  </div>
+                  {/if}
+                </div>
+
+                {/if}
+
+              </a>
+
+            </div>
+            {/foreach}
+
+          </div>
+
+        </div>
+      </section>
+      {/if}
+      {/block}
+
+      {block depoimentos}
+      {if $depoimentos}
+      <section class="depoimentos border-top brd-body">
+        <div class="container my-4 py-3 overflow-hidden">
+
+          <div class="mb-5 text-center">
+            <h2 class="h1" data-aos="fade">
+              O que dizem nossos clientes
+            </h2>
+            <div>
+              {$depoimentos['chamada']}
+            </div>
+          </div>
+
+          <div class="swiper-container" data-sm="1,20" data-md="2,20" data-lg="3,20" data-aos="fade">
+            <div class="swiper-wrapper">
+
+              {foreach $depoimentos['depoimentos'] as $depoimento}
+              <div class="swiper-slide">
+                {include 'card-depoimento.latte' depoimento:$depoimento}
+              </div>
+              {/foreach}
+
+            </div>
+            <div class="pagination mt-4 d-flex col-md-12 justify-content-center"></div>
+          </div>
+
+          <div class="text-center mt-4 d-nonex">
+            <a href="depoimentos" class="btn brd-1 color-1 rounded-pill">
+              {$depoimentos['cta']}
+            </a>
+          </div>
+
+        </div>
+
+      </section>
+      {/if}
+      {/block}
+
+      {block blog}
+      {if $blog}
+      <section class="posts border-top brd-body">
+        <div class="container my-4 py-3">
+
+          <div class="mb-4">
+            <h2 class="h1" data-aos="fade">
+              Últimas do Blog
+            </h2>
+          </div>
+
+          <div class="swiper-container overflow-hidden" data-sm="1,20" data-md="2,20" data-lg="3,20" data-aos="fade-up">
+            <div class="swiper-wrapper">
+              {foreach $blog['posts'] as $post}
+              <div class="swiper-slide pb-3">
+                {include 'card-post.latte' post:$post}
+              </div>
+              {/foreach}
+            </div>
+            <div class="pagination mt-4 d-flex col-md-12 justify-content-center"></div>
+          </div>
+
+        </div>
+
+      </section>
+      {/if}
+      {/block}
+
+      {block nuvemx}
+      {if $nuvem}
+      <section class="nuvem pt-5 pb-5 border-top brd-body d-none d-md-block">
+
+        <div class="container">
+          <h2 class="h1 mb-4 d-none">
+            Acesso Rápido
+          </h2>
+          <div class="text-center">
+            {foreach $nuvem as $link}
+            <a href="{$link['url']}" class="btn btn-sm rounded-pill brd-body color-body m-2">
+              {$link['label']}
+            </a>
+            {/foreach}
+          </div>
+        </div>
+
+      </section>
+      {/if}
+      {/block}
+
+    </main>
+
+    {block popup}
+    {if $popup }
+    <button class="d-nonex abre-pop-up dialog-open" data-src="#pop">Abrir</button>
+    <section id="pop" class="dialog bg-dark rounded-5 max-w-11 max-w-lg-10 overflow-hidden">
+      <div class="position-relative">
+
+        <div class="position-absolute right-0 m-3 z-index-12">
+          <a href="#" class="btn rounded-pill bg-white dialog-close">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+
+        <a href="{$popup['link']}" target="{$popup['target']}">
+          <div class="d-flex">
+
+            {if $popup['mostrar_texto']==1 }
+              <img src="{$popup['img']}" class="img-fit opacity-7" alt="{$popup['titulo']}">
+            {else}
+              <img src="{$popup['img']}" class="img-fit " alt="{$popup['titulo']}">
+            {/if}
+
+            {if $popup['mostrar_texto']==1 }
+            <div class="position-absolute d-flex align-items-center w-100 h-100">
+              <div class="container d-flex flex-column">
+                <div class="text-white text-center">
+                  <div class="info-1 text-4 text-xl-12">
+                    {$popup['titulo']}
+                  </div>
+                  <div class="info-2 d-inline-flex text-md-6 py-2">
+                    {$popup['texto']}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/if}
+
+          </div>
+        </a>
+
+      </div>
+    </section>
+    {/if}
+    {/block}
+
+{/block}

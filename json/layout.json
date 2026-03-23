@@ -1,0 +1,23 @@
+{
+    "depoimentos": {
+        "nome": "Depoimentos",
+        "valor": "on",
+        "tamanho": "20",
+        "class": "checkbox",
+        "ajuda": "Exibir depoimentos na Home"
+    },
+    "blog": {
+        "nome": "Blog",
+        "valor": "on",
+        "tamanho": "20",
+        "class": "checkbox",
+        "ajuda": "Exibir últimos posts do Blog na Home"
+    },
+    "mapa": {
+        "nome": "Mapa",
+        "valor": "on",
+        "tamanho": "20",
+        "class": "checkbox",
+        "ajuda": "Exibir mapa com imóveis no resultado da busca"
+    }
+}

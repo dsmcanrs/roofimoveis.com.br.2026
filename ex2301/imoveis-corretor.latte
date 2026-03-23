@@ -1,0 +1,126 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-imoveis{/block}
+
+{block content}
+
+    <section class="filtros w-100 border-bottom brd-body py-3 ">
+      <div class="container d-flex justify-content-end align-items-center">
+
+        <div class="visualizar btn-group">
+          <a
+            href="#"
+            class="btn btn-sm brd-1 color-1 rounded-pill-left prevent text-nowrap d-none d-md-inline btn-grid"
+            data-toggle="tooltip" title="Grade">
+            <i class="bx-fw bx bxs-grid"></i>
+          </a>
+          <a
+            href="#"
+            class="btn btn-sm brd-1 color-1 rounded-pill-right prevent text-nowrap btn-list"
+            data-toggle="tooltip" title="Lista">
+            <i class="bx-fw bx bx-list-ul"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <main class="container">
+
+      <div class="row">
+
+        <div class="col-12 py-4 mt-3">
+
+          <div class="d-block d-md-flex text-center justify-content-between align-items-center w-100 mb-4">
+
+            <h1 class="h2" data-aos="fade">
+              {$titulo}
+            </h1>
+
+            <div class="ordem btn btn-sm brd-1 d-inline-flex align-items-center">
+              <i class="fa fa-sort-amount-down"></i>
+              <div class="dropdown">
+                <button class="border-0 bg-body dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  {$order['selected']}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  {foreach $orderby as $grupo => $options}
+                  <span class="dropdown-item d-none">
+                    {$grupo}
+                  </span>
+                  {foreach $options as $option}
+                  <a class="dropdown-item {$option['selected']}"
+                    href="{$order['page']}?{$order['query']}&ordem={$option['value']}">
+                    {$option['label']}
+                  </a>
+                  {/foreach}
+                  <hr class="dropdown-divider">
+                  {/foreach}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {if $imoveis>0}
+          <section class="imoveis">
+
+            <div class="row">
+              {foreach $imoveis as $imovel}
+              <div class="grid-list col-md-4 pb-4" data-aos="fade-up">
+                {include 'card-imovel.latte' imovel:$imovel}
+              </div>
+              {/foreach}
+            </div>
+
+            <div class="paginacao d-flex justify-content-center my-4">
+              {if $paginacao['prev']}
+              <a href="{$paginacao['prev']}" class="btn brd-1 color-1 rounded-pill mx-1">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+              {/if}
+              {foreach $paginacao['paginas'] as $pagina}
+              <a href="{$pagina['url']}" class="btn brd-1 color-1 rounded-pill mx-1 {$pagina['active']}">
+                {$pagina['pg']}
+              </a>
+              {/foreach}
+              {if $paginacao['next']}
+              <a href="{$paginacao['next']}" class="btn brd-1 color-1 rounded-pill mx-1">
+                <i class="fa fa-chevron-right"></i>
+              </a>
+              {/if}
+            </div>
+
+          </section>
+          {/if}
+
+        </div>
+
+      </div>
+
+    </main>
+
+    {if $imoveis==0}
+    <section class="vazio my-5 d-nonex">
+      <div class="container">
+        <div class="row text-center">
+          <div class="h3">
+            Nenhum imóvel encontrado.
+          </div>
+          <div class="h5 mt-5">
+            Não encontrou o imóvel que procura?
+          </div>
+          <div>
+            Conte-nos como é o imóvel que você procura que nossa equipe fará uma busca especial para você.
+          </div>
+          <div class="mt-4">
+            <a href="encomende-seu-imovel" class="btn btn-lg btn-2 rounded-pill">
+              Encontre meu imóvel
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/if}
+
+{/block}

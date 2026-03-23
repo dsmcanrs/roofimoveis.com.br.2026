@@ -1,0 +1,25 @@
+<IfModule mod_deflate.c>
+   SetOutputFilter DEFLATE
+</IfModule>
+<IfModule mod_headers.c>
+    <FilesMatch ".(png|jp?g|gif|svg|ico|mpeg|css|map|woff|woff2|eot|svg|ttf)$">
+       Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+    <FilesMatch ".(css|js)$">
+       Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+   <FilesMatch "\.(png|jp?g|gif|svg|ico|mp4|wmv|mov|mpeg|css|map|woff|woff2|eot|svg|ttf|js|json|pdf|csv)">
+      ExpiresActive on
+      ExpiresDefault "access plus 4 weeks"
+   </FilesMatch>
+</IfModule>
+
+Options -Indexes
+Options +Includes
+
+AddType text/html .shtml
+AddOutputFilter INCLUDES .shtml
+
+DirectoryIndex index.php index.html index.shtml

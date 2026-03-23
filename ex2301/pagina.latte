@@ -1,0 +1,140 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-pagina{/block}
+
+{block content}
+
+    <section id="banner">
+
+      {if $pagina['banner'] }
+      <div class="d-flex position-relative bg-footer color-white">
+
+        <div class="bg bg-dark gradient-top w-100 vh-40 vh-md-50">
+            <img src="{$pagina['banner']}" class="img-fit opacity-5" alt="{$pagina['titulo']}">
+        </div>
+
+        <div class="fg position-absolute z-index-2 d-flex align-items-center w-100 h-100">
+          <div class="container d-flex">
+
+            <div class="col-md-8 mx-auto">
+              <div class="w-100 text-center">
+                <h1 class="h1" data-aos="fade-right">
+                  {$pagina['titulo']|noescape}
+                </h1>
+                <div class="text-3 text-md-6 fw-light" data-aos="fade-right" data-aos-delay="300">
+                  {$pagina['chamada']|noescape}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      {/if}
+
+      {if !$pagina['banner'] }
+      <div class="d-flex w-100 bg-footer color-footer">
+        <div class="container my-5 text-center">
+          <div class="col-md-8 mx-auto">
+            <h1 class="h1" data-aos="fade-right">
+              {$pagina['titulo']|noescape}
+            </h1>
+            <div class="text-2 text-md-6 text-center fw-light" data-aos="fade-right" data-aos-delay="300">
+              {$pagina['chamada']|noescape}
+            </div>
+          </div>
+       </div>
+      </div>
+      {/if}
+
+    </section>
+
+    <main class="container col-md-8 mx-auto my-5">
+      {$pagina['texto']|noescape}
+    </main>
+
+    {if $corretores }
+    <section class="container col-md-8 mx-auto my-5">
+      <div class="row">
+
+        {foreach $corretores as $corretor}
+        <div class="col-md-4">
+
+          <div class="corretor d-flex border brd-body rounded-3 shadow mt-5 p-3 overflow-hidden">
+            <div class="d-flex align-items-center">
+
+              <div class="foto overflow-hidden d-flex h-100x pe-3">
+                <img
+                  src="{$corretor['foto']}" alt="{$corretor['nome']}"
+                  class="img-fit rounded-circle"
+                  style="width: 100px; height: 100px;">
+              </div>
+
+              <div class="info p-3x ps-0">
+
+                <div class="mb-1">
+                  <span class="text-2 fw-600 truncate overflow-hidden">
+                    {$corretor['nome']}
+                  </span>
+                </div>
+
+                {if $corretor['creci']}
+                <div class="mb-1 small">
+                  CRECI {$corretor['creci']}
+                </div>
+                {/if}
+
+                {if $corretor['telefone']}
+                <div class="mb-2">
+                  <a
+                    class="truncate overflow-hidden"
+                    href="https://api.whatsapp.com/send?phone={$corretor['telefone_num']}">
+                  <i class="fab fa-whatsapp whatsapp"></i>
+                    {$corretor['telefone']}
+                  </a>
+                </div>
+                {/if}
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        {/foreach}
+
+      </div>
+    </section>
+    {/if}
+
+    {if $form_pagina }
+    <div class="container col-md-8 mx-auto my-5">
+      <form class="validate-form" action="{$form_pagina['action']}" method="post" autocomplete="off" enctype="multipart/form-data">
+
+        <input type="hidden" name="send" value="1">
+
+        <div class="row">
+          {$form_pagina['fields']|noescape}
+        </div>
+
+        <div class="d-block d-md-flex justify-content-md-between">
+
+          <div class="text-center text-md-start mt-3">
+            <div class="d-flex mx-auto">
+              {$form_pagina['captcha']|noescape}
+            </div>
+          </div>
+
+          <div class="text-center text-md-end mt-3">
+            <button type="submit" class="btn btn-1 rounded-pill btn-hover-shadow">
+              {$form_pagina['btn']}
+            </button>
+          </div>
+
+        </div>
+    </form>
+    </div>
+    {/if}
+
+{/block}

@@ -1,0 +1,86 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-blog{/block}
+
+{block content}
+
+    {block destaque}
+    {if $destaque}
+    <section class="banner d-flex position-relative">
+
+      <div class="bg bg-dark gradient-top w-100 vh-50">
+        <img src="{$destaque['img']}" class="img-fit opacity-7" alt="$destaque['titulo']">
+      </div>
+
+      <div class="fg position-absolute z-index-2 d-flex align-items-center w-100 h-100">
+        <div class="container d-flex flex-column">
+
+          <div class="w-10 mx-auto py-5 text-center text-white">
+            <a href="{$destaque['url']}">
+              <h1 class="text-6 text-lg-12 mb-4" data-aos="fade-right">
+                {$destaque['titulo']}
+              </h1>
+              <div class="text-2 fw-light" data-aos="fade-up" data-aos-delay="200">
+                {$destaque['chamada']}
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    {/if}
+    {/block}
+
+    <main class="container py-3 my-3 my-md-5">
+      <div class="row">
+
+        {block posts}
+        <section id="posts" class="col-md-9 order-2">
+
+          <div class="col-md-12 mb-4">
+            <h2 class="h1">
+              {$secao}
+            </h2>
+          </div>
+
+          <div class="row">
+            {foreach $posts as $post}
+            <div class="col-md-6 pb-5">
+              {include 'card-post.latte' post:$post}
+            </div>
+            {/foreach}
+          </div>
+
+          <div class="paginacao d-flex justify-content-center justify-content-lg-start my-4">
+            {if $paginacao['prev']}
+            <a href="{$paginacao['prev']}" class="btn brd-1 color-1 rounded-pill mx-1">
+              <i class="fa fa-chevron-left"></i>
+            </a>
+            {/if}
+            {foreach $paginacao['paginas'] as $pagina}
+            <a href="{$pagina['url']}" class="btn brd-1 color-1 rounded-pill mx-1 {$pagina['active']}">
+              {$pagina['pg']}
+            </a>
+            {/foreach}
+            {if $paginacao['next']}
+            <a href="{$paginacao['next']}" class="btn brd-1 color-1 rounded-pill mx-1">
+              <i class="fa fa-chevron-right"></i>
+            </a>
+            {/if}
+          </div>
+
+        </section>
+        {/block}
+
+        {block blog_menu}
+        <nav class="col-md-3 order-2 order-lg-1">
+          {include 'blog-menu.latte'}
+        </nav>
+        {/block}
+
+      </div>
+    </main>
+
+{/block}

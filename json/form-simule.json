@@ -1,0 +1,201 @@
+{
+    "nome": "Simule seu Financimento",
+    "email": "",
+    "botao": "Enviar mensagem",
+    "fields": [
+        {
+            "group": "Dados Pessoais"
+        }, {
+            "text": "Dados pessoais para que possamos entrar em contato com você."
+        },
+        {
+            "required": 1,
+            "type": "text",
+            "label": "Nome",
+            "placeholder": "Seu Nome",
+            "class": "",
+            "cols": "3",
+            "rows": "",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "type": "text",
+            "label": "E-mail",
+            "placeholder": "Seu E-mail",
+            "class": "valida-email",
+            "cols": "3",
+            "rows": "",
+            "value": ""
+        },
+        {
+            "required": 1,
+            "label": "Telefone",
+            "placeholder": "Telefone",
+            "type": "text",
+            "class": "mask-fone",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "CPF/CNPJ",
+            "placeholder": "CPF ou CNPJ",
+            "type": "text",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "group": "Descreva o imóvel que você deseja financiar"
+        },
+        {
+            "required": 1,
+            "type": "radio",
+            "label": "Finalidade",
+            "placeholder": "Selecione",
+            "class": "",
+            "cols": "12",
+            "rows": "",
+            "value": [
+                "Comprar imóvel\r",
+                "Alugar imóvel"
+            ]
+        },
+        {
+            "required": 1,
+            "label": "Tipo de Imóvel",
+            "placeholder": "Tipo de Imóvel",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Cidade",
+            "placeholder": "Cidade",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Bairro",
+            "placeholder": "Bairro",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 0,
+            "label": "Dormitórios",
+            "placeholder": "Dormitórios",
+            "type": "number",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 0,
+            "label": "Vagas",
+            "placeholder": "Vagas",
+            "type": "number",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "group": "Informações financeiras"
+        },
+        {
+            "required": 1,
+            "label": "Valor do Imóvel",
+            "placeholder": "Valor do Imóvel",
+            "type": "text",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Valor de entrada",
+            "placeholder": "Valor de entrada",
+            "type": "text",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Prazo (em meses)",
+            "placeholder": "Prazo",
+            "type": "number",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 1,
+            "label": "Sua renda",
+            "placeholder": "Sua renda",
+            "type": "text",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": 0,
+            "label": "Já fui beneficiado, ou o imóvel objeto do financiamento, com subsídio concedido pelo FGTS/União.",
+            "placeholder": "",
+            "type": "checkbox",
+            "class": "",
+            "cols": "12",
+            "value": "Sim",
+            "rows": ""
+        },
+        {
+            "required": 0,
+            "label": "Possuo 3 anos de trabalho sob regime do FGTS, somando todos os períodos trabalhados.",
+            "placeholder": "",
+            "type": "checkbox",
+            "class": "",
+            "cols": "12",
+            "value": "Sim",
+            "rows": ""
+        },
+        {
+            "required": 0,
+            "label": "Mais de um comprador ou dependente.",
+            "placeholder": "",
+            "type": "checkbox",
+            "class": "",
+            "cols": "12",
+            "value": "Sim",
+            "rows": ""
+        },
+        {
+            "required": 0,
+            "label": "Observações",
+            "placeholder": "Outras observações importantes",
+            "type": "textarea",
+            "class": "",
+            "cols": "12",
+            "value": "",
+            "rows": "4"
+        }
+    ]
+}

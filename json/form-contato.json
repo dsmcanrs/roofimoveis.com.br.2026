@@ -1,0 +1,47 @@
+{
+    "nome": "Contato",
+    "email": "",
+    "botao": "Enviar mensagem",
+    "fields": [
+        {
+            "required": "1",
+            "type": "text",
+            "label": "Nome",
+            "placeholder": "Seu Nome",
+            "class": "",
+            "cols": "4",
+            "rows": "",
+            "value": ""
+        },
+        {
+            "required": "1",
+            "type": "text",
+            "label": "E-mail",
+            "placeholder": "Seu E-mail",
+            "class": "valida-email",
+            "cols": "4",
+            "rows": "",
+            "value": ""
+        },
+        {
+            "required": "1",
+            "label": "Telefone",
+            "placeholder": "Telefone",
+            "type": "text",
+            "class": "mask-fone",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "1",
+            "label": "Mensagem",
+            "placeholder": "Sua mensagem",
+            "type": "textarea",
+            "class": "",
+            "cols": "12",
+            "value": "",
+            "rows": "4"
+        }
+    ]
+}

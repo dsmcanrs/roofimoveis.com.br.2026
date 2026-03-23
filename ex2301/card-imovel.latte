@@ -1,0 +1,140 @@
+<div class="card-imovel">
+
+  <div class="fotos position-relative overflow-hidden d-flex align-items-center rounded-4">
+
+    <div class="position-absolute top-0 left-0 p-3 z-index-1">
+      <span class="badge bg-color-1 text-white">
+        {$imovel['codigo']}
+      </span>
+    </div>
+
+    <div class="position-absolute top-0 right-0 p-3 z-index-1">
+      <a
+        href="#"
+        class="text-3 fav fav-{$imovel['id']} fav-on color-white"
+        data-id="{$imovel['id']}"
+        data-toggle="tooltip"
+        alt="Remover"
+        title="Remover"
+        >
+        <i class="fas fa-heart"></i>
+      </a>
+      <a
+        href="#"
+        class="text-3 fav fav-{$imovel['id']} fav-off color-white"
+        data-id="{$imovel['id']}"
+        data-toggle="tooltip"
+        alt="Adicionar"
+        title="Adicionar"
+        >
+        <i class="far fa-heart"></i>
+      </a>
+    </div>
+
+    {if $imovel['video']}
+    <div class="position-absolute bottom-0 right-0 z-index-1 p-3">
+      <span class="color-white text-3 tt" title="Este imóvel possui video">
+        <i class='bx-sm bx bx-movie-play'></i>
+      </span>
+    </div>
+    {/if}
+
+    {if $imovel['tag']}
+    <div class="position-absolute bottom-0 left-0 z-index-1 p-3">
+      <span class="badge bg-color-2 text-white">
+        {$imovel['tag']}
+      </span>
+    </div>
+    {/if}
+
+    <div class="swiper-container w-100 d-flex align-items-center">
+
+      {block fotos}
+      <div class="swiper-wrapper">
+        {foreach $imovel['fotos'] as $foto}
+        <div class="swiper-slide overflow-hidden">
+          <a href="{$imovel['url']}" class="gradient-top foto" title="{$foto['alt']}">
+            <img class="img-fit" src="{$foto['foto_sm']}" alt="{$foto['alt']}" loading="lazy">
+          </a>
+          <div class="swiper-lazy-preloader spinner"></div>
+        </div>
+        {/foreach}
+      </div>
+      {/block}
+
+      <div class="navigation setas d-inline position-absolute z-index-1 px-3 left-0">
+        <a href="#" class="prev btn color-white prevent">
+          <i class="fa fa-angle-left text-5"></i>
+        </a>
+      </div>
+
+      <div class="navigation setas position-absolute z-index-1 px-3 right-0">
+        <a href="#" class="next btn color-white prevent text-end">
+          <i class="fa fa-angle-right text-5"></i>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="info">
+
+    <a href="{$imovel['url']}" title="{$imovel['alt']}">
+
+      <div class="d-flex flex-column justify-content-center">
+
+        <div class="titulo pb-2">
+          <h3 class="h5">
+            {$imovel['categoria']}
+          </h3>
+          <div class="h6 fw-light truncate overflow-hidden">
+            {$imovel['bairro']}, {$imovel['cidade']}
+          </div>
+          {if $imovel['mostrar_valores'] }
+          <span class="fw-bold h5 color-1">
+            {$imovel['valor']}
+          </span>
+          {/if}
+        </div>
+
+        <div class="desc my-3">
+          {$imovel['descricao']}
+        </div>
+
+        {if $imovel['mostrar_ficha'] }
+        <div class="infra d-flex justify-content-around py-3 border-top brd-body">
+          {if $imovel['dormitorios']}
+          <div class="d-flex tt" title="Dormitórios">
+            <i class="bx-sm bx bx-bed color-1"></i>
+            <span class="ms-2">{$imovel['dormitorios']}</span>
+          </div>
+          {/if}
+          {if $imovel['suites']}
+          <div class="d-flex tt" title="Suítes">
+            <i class="bx-sm bx bx-shower color-1"></i>
+            <span class="ms-2">{$imovel['suites']}</span>
+          </div>
+          {/if}
+          {if $imovel['vagas']}
+          <div class="d-flex tt" title="Vagas">
+            <i class="bx-sm bx bx-car color-1"></i>
+            <span class="ms-2">{$imovel['vagas']}</span>
+          </div>
+          {/if}
+          {if $imovel['area_privativa']}
+          <div class="d-flex tt" title="Área">
+            <i class="bx-sm bx bx-crop color-1"></i>
+            <span class="ms-2">{$imovel['area_privativa']}m²</span>
+          </div>
+          {/if}
+        </div>
+        {/if}
+
+      </div>
+
+    </a>
+
+  </div>
+
+</div>

@@ -1,0 +1,47 @@
+{
+    "facebook": {
+        "nome": "Facebook",
+        "valor": "https://www.facebook.com/profile",
+        "tamanho": "200",
+        "class": "",
+        "ajuda": "https://www.facebook.com/profile"
+
+    },
+    "instagram": {
+        "nome": "Instagram",
+        "valor": "https://www.instagram.com/profile",
+        "tamanho": "200",
+        "class": "",
+        "ajuda": "https://www.instagram.com/profile"
+    },
+    "tiktok": {
+        "nome": "TikTok",
+        "valor": "https://www.tiktok.com/@profile",
+        "tamanho": "200",
+        "class": "",
+        "ajuda": "https://www.tiktok.com/@profile"
+    },
+    "youtube": {
+        "nome": "Youtube",
+        "valor": "https://www.youtube.com/channel",
+        "tamanho": "200",
+        "class": "",
+        "ajuda": "https://www.youtube.com/channel"
+    },
+    "twitter": {
+        "ajuda": "https://www.twitter.com/profile",
+        "class": "",
+        "id": "twitter",
+        "nome": "Twitter",
+        "tamanho": "200",
+        "valor": ""
+    },
+    "linkedin": {
+        "ajuda": "https:\/\/www.linkedin.com\/company\/profile",
+        "class": "",
+        "id": "linkedin",
+        "nome": "Linkedin",
+        "tamanho": "200",
+        "valor": ""
+    }    
+}

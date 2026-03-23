@@ -1,0 +1,287 @@
+{
+    "nome": "Anunciar Imóvel",
+    "email": "",
+    "botao": "Enviar Anúncio",
+    "fields": [
+        {
+            "group": "Dados Pessoais"
+        },
+        {
+            "required": "1",
+            "type": "text",
+            "label": "Nome",
+            "placeholder": "Seu Nome",
+            "class": "",
+            "cols": "4",
+            "rows": "",
+            "value": ""
+        }, {
+            "required": "1",
+            "type": "text",
+            "label": "E-mail",
+            "placeholder": "Seu E-mail",
+            "class": "valida-email",
+            "cols": "4",
+            "rows": "",
+            "value": ""
+        }, {
+            "required": "1",
+            "type": "text",
+            "label": "Telefone",
+            "placeholder": "Telefone",
+            "class": "mask-fone",
+            "cols": "4",
+            "rows": "",
+            "value": ""
+        },
+        {
+            "group": "Localização do Imóvel"
+        },
+        {
+            "required": "1",
+            "label": "Tipo",
+            "placeholder": "Apartamento, casa...",
+            "type": "text",
+            "class": "",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "1",
+            "label": "Endereço",
+            "placeholder": "Rua, número e complemento",
+            "type": "text",
+            "class": "",
+            "cols": "5",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "1",
+            "label": "Empreendimento",
+            "placeholder": "Empreendimento/condomínio",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "1",
+            "label": "Bairro",
+            "placeholder": "Bairro",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "1",
+            "label": "Cidade",
+            "placeholder": "Cidade",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "CEP",
+            "placeholder": "CEP",
+            "type": "text",
+            "class": "",
+            "cols": "4",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "group": "Características do Imóvel"
+        },
+        {
+            "required": "0",
+            "label": "Área Total",
+            "placeholder": "Área Total",
+            "type": "text",
+            "class": "",
+            "cols": "2",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "Área Privativa",
+            "placeholder": "Área Privativa",
+            "type": "text",
+            "class": "",
+            "cols": "2",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "Dormitórios",
+            "placeholder": "Dormitórios",
+            "type": "number",
+            "class": "",
+            "cols": "2",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "Suítes",
+            "placeholder": "Suítes",
+            "type": "number",
+            "class": "",
+            "cols": "2",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "Banheiros",
+            "placeholder": "Banheiros",
+            "type": "number",
+            "class": "",
+            "cols": "2",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "Vagas",
+            "placeholder": "Vagas",
+            "type": "number",
+            "class": "",
+            "cols": "2",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "label": "Semi Mobiliado",
+            "placeholder": "Semi Mobiliado",
+            "type": "checkbox",
+            "class": "",
+            "cols": "2",
+            "value": "Sim"
+        },
+        {
+            "label": "Mobiliado",
+            "placeholder": "Mobiliado",
+            "type": "checkbox",
+            "class": "",
+            "cols": "2",
+            "value": "Sim"
+        },
+        {
+            "label": "Ar condicionado",
+            "placeholder": "Ar condicionado",
+            "type": "checkbox",
+            "class": "",
+            "cols": "2",
+            "value": "Sim"
+        },
+        {
+            "label": "Churrasqueira",
+            "placeholder": "Churrasqueira",
+            "type": "checkbox",
+            "class": "",
+            "cols": "2",
+            "value": "Sim"
+        },
+        {
+            "label": "Aceita Pet",
+            "placeholder": "Aceita Pet",
+            "type": "checkbox",
+            "class": "",
+            "cols": "2",
+            "value": "Sim"
+        },
+        {
+            "required": "0",
+            "label": "Outras características do imóvel",
+            "placeholder": "Descreva outras características do imóvel",
+            "type": "textarea",
+            "class": "",
+            "cols": "12",
+            "value": "",
+            "rows": "4"
+        },
+        {
+            "group": "Dados do Anúncio"
+        },
+        {
+            "required": "0",
+            "label": "Valor para Venda",
+            "placeholder": "Valor para Venda",
+            "type": "text",
+            "class": "mask-moeda",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "Valor para Locação",
+            "placeholder": "Valor para Locação",
+            "type": "text",
+            "class": "mask-moeda",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "Valor do IPTU",
+            "placeholder": "Valor do IPTU",
+            "type": "text",
+            "class": "mask-moeda",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "required": "0",
+            "label": "Valor de Condomínio",
+            "placeholder": "Valor de Condomínio",
+            "type": "text",
+            "class": "mask-moeda",
+            "cols": "3",
+            "value": "",
+            "rows": ""
+        },
+        {
+            "group": "Fotos do Imóvel"
+        },
+        {
+            "text": "Atenção: Envie no máximo 10 arquivos com até 100Mb total."
+        },
+        {
+            "type": "file multiple",
+            "label": "Anexar Fotos",
+            "placeholder": "Aenxar Fotos",
+            "class": "",
+            "cols": "12",
+            "rows": "",
+            "value": ""
+        },
+        {
+            "group": "Documentos do Imóvel"
+        },
+        {
+            "text": "Conta de energia elétrica;\r\nSe individualizada, conta de água;\r\nSequencial do IPTU;\r\nEscritura ou Certidão de ônus reais."
+        },
+        {
+            "type": "file multiple",
+            "label": "Anexar Documentos",
+            "placeholder": "Aenxar Documentos",
+            "class": "",
+            "cols": "12",
+            "rows": "",
+            "value": ""
+        }
+    ]
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <style>
+      header, footer, section {
+        clear: both;
+        margin-bottom: 20px;
+      }
+      .row { padding: 0 -15px; }
+      .float-left { float: left!important; }
+      .border-bottom { border-bottom: 1px solid #dee2e6!important; }
+      .border-top { border-top: 1px solid #dee2e6!important; }
+      .col-12 { width: 100%; }
+      .col-11 { width: calc(100%/12*11); }
+      .col-10 { width: calc(100%/12*10); }
+      .col-9 { width: calc(100%/12*9); }
+      .col-8 { width: calc(100%/12*8); }
+      .col-7 { width: calc(100%/12*7); }
+      .col-6 { width: calc(100%/12*6); }
+      .col-5 { width: calc(100%/12*5); }
+      .col-4 { width: calc(100%/12*4); }
+      .col-3 { width: calc(100%/12*3); }
+      .col-2 { width: calc(100%/12*2); }
+      .col-1 { width: calc(100%/12*1); }
+      @media (max-width: 720px) {
+        .col-1,
+        .col-2,
+        .col-3,
+        .col-4,
+        .col-5,
+        .col-6,
+        .col-7,
+        .col-8,
+        .col-9,
+        .col-10,
+        .col-11,
+        .col-12 { width: 100%; }
+      }
+    </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header class="row border-bottom">
+      <div class="col-12">
+        <h1>%TITULO%</h1>
+      </div>
+    </header>
+
+    <section class="row">
+
+      <!-- BEGIN ITEM -->
+
+        <!-- BEGIN GROUP -->
+        <div class="float-left col-12 pt-3 mb-3" style="padding-top: 20px; margin-bottom: 15px;">
+          <h2>
+            {VALOR}
+          </h2>
+        </div>
+        <!-- END GROUP -->
+
+        <!-- BEGIN TEXT -->
+        <div class="float-left col-12">
+          <div class="pb-3" style="margin-bottom: 15px;">
+            {VALOR}
+          </div>
+        </div>
+        <!-- END TEXT -->
+
+        <!-- BEGIN CAMPO -->
+        <div class="float-left col-{COLS}" style="{STYLE}">
+          <div>
+            <b>{LABEL}:</b>
+          </div>
+          <div class="mb-2" style="margin-bottom: 10px;">
+            {VALOR}&nbsp;
+          </div>
+        </div>
+        <!-- END CAMPO -->
+
+      <!-- END ITEM -->
+
+    </section>
+
+    <footer class="row border-top" style="margin-top: 20px; padding-top: 15px;">
+      <div class="col-12 ">
+        <a href="%DOMINIO%" target="_blank">%DOMINIO%</a>
+      </div>
+    </footer>
+
+  </div>
+
+</html>

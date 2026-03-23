@@ -1,0 +1,509 @@
+/**
+  @Author: fullbiz
+  @Date: 2021-07-07 10:27:38
+  @Desc: Classes úteis genéricas
+
+  Extensão para compilar SASS no vscode
+  https://marketplace.visualstudio.com/items?itemName=yutent.scss-to-css
+
+*/
+
+.hidden { display: none !important; }
+.visible { display: block !important; }
+.flex { flex: 1; }
+
+.overflow-visible { overflow: visible !important; }
+.overflow-hidden { overflow: hidden !important; }
+@media (max-width: 768px) {
+  .overflow-sm-hidden { overflow: hidden !important; }
+}
+@media (min-width: 992px) {
+  .overflow-lg-hidden { overflow: hidden !important; }
+}
+.overflow-scroll { overflow: scroll !important; }
+
+.whatsapp { color: #09b560 !important }
+.whatsapp-bg { background-color: #09b560 !important }
+.whatsapp-brd { border-color: #09b560 !important }
+
+.messenger { color: #01aaff!important }
+.messenger-bg { background-color: #01aaff!important }
+.messenger-brd { border-color: #01aaff!important }
+
+.cursor-pointer {
+  cursor: pointer
+}
+
+.truncate, .text-truncate {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  // white-space: nowrap;
+  // overflow: hidden;
+}
+
+// Absolute Position
+// ----------------------------------------------------------------------------
+
+@each $side in (top, bottom, right, left) {
+    .#{$side}-0 {
+        #{$side}: 0 !important;
+    }
+    @media (min-width: 768px) {
+        .#{$side}-md-0 {
+            #{$side}: 0 !important;
+        }
+    }
+    @media (min-width: 992px) {
+        .#{$side}-lg-0 {
+            #{$side}: 0 !important;
+        }
+    }
+}
+
+// Sticky top apenas no Desktop
+@media (min-width: 768px) {
+  .position-sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+}
+
+.fullscreen {
+  clear: both;
+  position: fixed !important;
+  display: block !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  overflow: scroll;
+  z-index: 900 !important;
+}
+
+.fit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// Borders
+// ----------------------------------------------------------------------------
+
+@for $i from 1 through 5 {
+  .rounded-#{$i} {
+    border-radius: #{ .25*$i }rem !important;
+  }
+}
+
+@each $side in (top, bottom, right, left) {
+    .border-#{$side} {
+        border-#{$side}: solid 1px;
+    }
+    .border-#{$side}-0 {
+        border-#{$side}: none;
+    }
+    @media (max-width: 768px) {
+        .border-#{$side}-sm {
+            border-#{$side}: solid 1px;
+        }
+        .border-#{$side}-sm-0 {
+            border-#{$side}: none;
+        }
+    }
+    @media (min-width: 768px) {
+        .border-#{$side}-md {
+            border-#{$side}: solid 1px;
+        }
+        .border-#{$side}-md-0 {
+            border-#{$side}: none;
+        }
+    }
+    @media (min-width: 992px) {
+        .border-#{$side}-lg {
+            border-#{$side}: solid 1px;
+        }
+        .border-#{$side}-lg-0 {
+            border-#{$side}: none;
+        }
+    }
+}
+
+.border-dashed {
+    border: 2px dashed !important;
+}
+.rounded-pill-left {
+  border-radius: 50px 0 0 50px !important;
+}
+.rounded-pill-right {
+  border-radius: 0 50px 50px 0 !important;
+}
+
+// Z-Index
+// ----------------------------------------------------------------------------
+
+@for $i from 1 through 20 {
+  .z-index-#{$i} { z-index: #{ 100*$i} !important; }
+}
+
+// Vertical Height Min e Max
+// ----------------------------------------------------------------------------
+// Controle de altura max e min media query
+
+@for $i from 1 through 10 {
+  .min-vh-#{$i*10} { min-height: #{$i*10}vh; }
+  .max-vh-#{$i*10} { max-height: #{$i*10}vh; }
+  .vh-#{$i*10} { height: #{$i*10}vh; }
+  .min-h-#{$i*10} { min-height: #{$i*10%}; }
+  .max-h-#{$i*10} { max-height: #{$i*10%}; }
+  .h-#{$i*10} { height: #{$i*10%}; }
+  @media (max-width: 768px) {
+    .vh-sm-#{$i*10} { height: #{$i*10}vh!important; }
+  }
+  @media (min-width: 768px) {
+    .vh-md-#{$i*10} { height: #{$i*10}vh!important; }
+  }
+  @media (min-width: 992px) {
+    .vh-lg-#{$i*10} { height: #{$i*10}vh!important; }
+  }
+  @media (min-width: 1200px) {
+    .vh-xl-#{$i*10} { height: #{$i*10}vh!important; }
+  }
+}
+
+// Opacity
+// ----------------------------------------------------------------------------
+// Para aplicar em imagens de banners
+// opacity-1 a opacity-10
+
+@for $i from 1 through 10 {
+  .opacity-#{$i} { opacity: #{'.'+$i}!important; }
+}
+
+// Width Sizes
+// ----------------------------------------------------------------------------
+// Controle de largura de objetos com media query
+
+@for $i from 1 through 12 {
+  .w-#{$i} {
+    width: #{calc($i * 100/12) + '%'};
+  }
+  .max-w-#{$i} {
+    max-width: #{calc($i * 100/12) + '%'};
+  }
+  @media (max-width: 768px) {
+  }
+  @media (min-width: 768px) {
+    .w-md-#{$i} {
+      width: #{calc($i * 100/12) + '%'} !important;
+    }
+    .max-w-md-#{$i} {
+      max-width: #{calc($i * 100/12) + '%'} !important;
+    }
+  }
+  @media (min-width: 992px) {
+    .w-lg-#{$i} {
+      width: #{calc($i * 100/12) + '%'} !important;
+    }
+    .max-w-lg-#{$i} {
+      max-width: #{calc($i * 100/12) + '%'} !important;
+    }
+  }
+  @media (min-width: 1200px) {
+    .w-xl-#{$i} {
+      width: #{calc($i * 100/12) + '%'} !important;
+    }
+    .max-w-xl-#{$i} {
+      max-width: #{calc($i * 100/12) + '%'} !important;
+    }
+  }
+}
+
+// Font Sizes Pixels
+// ----------------------------------------------------------------------------
+@for $i from 10 through 30 {
+  .fs-#{$i} {
+    font-size: #{$i}px !important;
+  }
+}
+
+// Font Sizes REM
+// ----------------------------------------------------------------------------
+
+@for $i from 1 through 18 {
+  .text-#{$i} {
+    font-size: #{.75+($i*.125)}rem!important;
+    transition: all 0.5s;
+  }
+  @media (min-width: 768px) {
+    .text-md-#{$i} {
+      font-size: #{.75+($i*.125)}rem!important;
+      transition: all 0.5s;
+    }
+  }
+  @media (min-width: 992px) {
+    .text-lg-#{$i} {
+      font-size: #{.75+($i*.125)}rem!important;
+      transition: all 0.5s;
+    }
+  }
+  @media (min-width: 1200px) {
+    .text-xl-#{$i} {
+      font-size: #{.75+($i*.125)}rem!important;
+      transition: all 0.5s;
+    }
+  }
+}
+
+// Title Sizes
+// ----------------------------------------------------------------------------
+// Tamanho dos títulos responsivos
+
+@for $i from 1 through 6 {
+  @media (max-width: 992px) {
+    h#{$i}, .h#{$i} {
+      font-size: 1+(6-$i)*0.0875rem;
+      // line-height: #{6-$i}rem;
+      font-weight: 700;
+      transition: all 0.5s;
+    }
+  }
+  @media (min-width: 1200px) {
+    h#{$i}, .h#{$i} {
+      font-size: 1+(6-$i)*0.22rem;
+      // line-height: #{6-$i}rem;
+      font-weight: 700;
+      transition: all 0.5s;
+    }
+  }
+}
+
+// Font Weight
+// ----------------------------------------------------------------------------
+// Verificar na web-font quais as opções que ele carrega
+
+@for $i from 1 through 8 {
+  .fw-#{$i*100} {
+    font-weight: #{$i*100} !important;
+  }
+}
+
+// Text Shadow
+// ----------------------------------------------------------------------------
+
+@for $i from 1 through 10 {
+  .text-shadow-#{$i}{
+    text-shadow: 1px 1px #{$i}px #333;
+  }
+}
+
+.shadow-1 {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+.shadow-2 {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 12px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.shadow-3 {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 16px 24px -5px, rgba(0, 0, 0, 0.04) 0px 6px 8px -3px;
+}
+.shadow-4 {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 32px 48px -7px, rgba(0, 0, 0, 0.04) 0px 8px 10px -4px;
+}
+
+// Shadow
+// ----------------------------------------------------------------------------
+
+@for $i from 1 through 5 {
+  .shadow-#{$i}, .hover-shadow-#{$i}:hover{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px #{$i*4}px #{$i*6}px #{-$i*2}px, rgba(0, 0, 0, 0.05) 0px #{$i*2}px #{$i*3}px -6px;
+  }
+}
+
+// Gradients
+// ----------------------------------------------------------------------------
+
+.gradient-top:after {
+  content: "";
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%);
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s;
+  overflow: hidden;
+}
+.gradient-bottom:after {
+  content: "";
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%);
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s;
+  overflow: hidden;
+}
+
+// Imagem
+// ----------------------------------------------------------------------------
+
+.img-fit {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.back-fit, .bg-fit {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.img-circle{
+    border-radius: 1000px;
+    -webkit-border-radius: 1000px;
+    overflow: hidden;
+}
+
+.img-grayscale {
+  filter: grayscale(1);
+}
+
+// Form Error
+// ----------------------------------------------------------------------------
+
+.has-error input,
+.has-error textarea,
+.has-error select {
+  border: solid 1px #dc3545;
+}
+
+// Custom Drop Area
+// ----------------------------------------------------------------------------
+
+.file-drop-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 25px;
+  /* border: 1px dashed rgba(255, 255, 255, 0.4); */
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.file-drop-area input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+
+// Spinner Animation
+// ----------------------------------------------------------------------------
+
+.spinner {
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Google Transtor
+// ----------------------------------------------------------------------------
+
+body { top: 0 !important; }
+.skiptranslate {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+// Custom Checkbox
+// ----------------------------------------------------------------------------
+
+.custom-checkbox {
+  display: block;
+  margin: 0.2em 0;
+  padding: 0.2em 0;
+}
+.custom-checkbox input {
+    display: none;
+}
+.custom-checkbox span {
+    font-weight: 500 !important;
+}
+.custom-checkbox span:before {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600 !important;
+  background-color: #fff;
+  /* border: 0.1em solid rgba(var(--color_body_font_rgb),.2); */
+  border: 0.1em solid rgba(0,0,0,.2);
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  padding-left: 0.2em;
+  padding-bottom: 0.3em;
+  margin-right: 0.5em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: .2s;
+}
+.custom-checkbox span:active:before {
+    transform: scale(0);
+}
+.custom-checkbox input:checked + span:before {
+  /* background-color: var(--color_1); */
+  background-color: #fff;
+  /* border-color: var(--color_1); */
+  color: #333;
+}
+
+// Custom Slim Scroll
+// ----------------------------------------------------------------------------
+
+.scroll-y{
+  overflow-x: hidden!important;
+  overflow-y: auto!important;
+}
+.scroll-x{
+  overflow-x: auto!important;
+  overflow-y: hidden!important;
+}
+.custom-scroll {
+  scrollbar-width: thin; /* Ajusta a largura da scrollbar no Firefox */
+  scrollbar-color: rgba(7, 7, 7, 0.2) transparent; /* Cor da scrollbar no Firefox */
+  overflow-y: scroll;
+}
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(7, 7, 7, 0.2);
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(7, 7, 7, 0.6);
+}

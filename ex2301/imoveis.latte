@@ -1,0 +1,255 @@
+{layout 'layout.latte'}
+
+{block bodyClass}pg-imoveis{/block}
+
+{block content}
+
+    <section class="filtros w-100 border-bottom brd-body py-3">
+      <div class="container w-100x d-flex justify-content-betweenx align-items-center">
+
+        <div class="d-flex mr-2 text-nowrap">
+          <a
+            class="btn btn-sm brd-1 color-1 rounded-pill prevent dialog-open animate__animated animate__headShake animate__delay-2s animate__repeat-2"
+            data-src="#busca-mobile"
+            data-toggle="tooltip"
+            title="Filtros">
+            <i class='bx-fw bx bx-slider-alt'></i>
+            Filtros
+          </a>
+        </div>
+
+        {block filtros}
+        <div class="swiper-container d-none d-md-flex mx-2 overflow-hidden">
+          <div class="swiper-wrapper">
+            {foreach $filtros as $filtro}
+            <div class="swiper-slide d-flex flex-shrink-1 mx-1">
+              <span class="btn btn-sm brd-body color-body rounded-pill text-nowrap">
+                {$filtro['label']}
+                <a href="{$filtro['url']}"><i class="bx-fw bx bxs-x-circle"></i></a>
+              </span>
+            </div>
+            {/foreach}
+          </div>
+        </div>
+        {/block}
+
+        <div class="visualizar btn-group mx-auto me-0">
+          <a
+            n:if="$mapa['show']"
+            href="#"
+            class="btn btn-sm brd-1 color-1 mx-1 rounded-pill prevent text-nowrap btn-mapa"
+            data-toggle="tooltip" title="Mapa">
+            <i class='bx-fw bx bx-map'></i>
+            <span class="d-none d-md-inline">Mapa</span>
+          </a>
+          <a
+            href="#"
+            class="btn btn-sm brd-1 color-1 mx-1 rounded-pill prevent text-nowrap d-none d-md-inline btn-grid"
+            data-toggle="tooltip" title="Grade">
+            <i class="bx-fw bx bx-grid-alt"></i>
+            <span class="d-none d-md-inline">Grade</span>
+          </a>
+          <a
+            href="#"
+            class="btn btn-sm brd-1 color-1 mx-1 rounded-pill prevent text-nowrap btn-list"
+            data-toggle="tooltip" title="Lista">
+            <i class="bx-fw bx bx-list-ul"></i>
+            <span class="d-none d-md-inline">Lista</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    {if $imoveis>0}
+    <main class="container">
+
+      <div class="row">
+
+        <div class="col-12 py-4 mt-3">
+
+          <div class="d-block d-md-flex text-center text-md-start justify-content-between w-100 mb-4">
+
+            <h1 class="h2 me-md-5" data-aos="fade">
+              {$titulo} ({$total_imoveis})
+            </h1>
+
+            <div class="ordem d-inline-flex align-items-center">
+              <i class="fa fa-sort-amount-down"></i>
+              <div class="dropdown">
+                <button class="border-0 bg-body color-body" data-bs-toggle="dropdown" aria-expanded="false">
+                  {$order['selected']}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  {foreach $orderby as $grupo => $options}
+                    <li class="ps-3 text-1">
+                      {$grupo}
+                    </li>
+                    {foreach $options as $option}
+                    <li>
+                      <a
+                        class="dropdown-item {$option['selected']}"
+                        href="{$order['page']}?{$order['query']}&ordem={$option['value']}">
+                        {$option['label']}
+                      </a>
+                    </li>
+                    {/foreach}
+                    <li><hr class="dropdown-divider"></li>
+                  {/foreach}
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          {block mapa}
+          <section class="mapa d-none rouded-5">
+            <div id="full-map" class="rounded vh-50 vh-md-80"></div>
+          </section>
+          {/block}
+
+          <section class="imoveis">
+
+            <div class="row">
+              {foreach $imoveis as $imovel}
+              <div class="grid-list col-md-4 pb-4" data-aos="fade">
+                {include 'card-imovel.latte' imovel:$imovel}
+              </div>
+              {/foreach}
+            </div>
+
+            <div class="paginacao d-flex justify-content-center my-4">
+              {if $paginacao['prev']}
+              <a href="{$paginacao['prev']}" class="btn brd-1 color-1 rounded-pill mx-1">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+              {/if}
+              {foreach $paginacao['paginas'] as $pagina}
+              <a href="{$pagina['url']}" class="btn brd-1 color-1 rounded-pill mx-1 {$pagina['active']}">
+                {$pagina['pg']}
+              </a>
+              {/foreach}
+              {if $paginacao['next']}
+              <a href="{$paginacao['next']}" class="btn brd-1 color-1 rounded-pill mx-1">
+                <i class="fa fa-chevron-right"></i>
+              </a>
+              {/if}
+            </div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+    </main>
+    {/if}
+
+    <div class="position-fixed bottom-0 z-index-10 p-3 d-md-none">
+      <button
+        class="rounded-pill btn btn-1 dialog-open"
+        style="width: 60px; height: 60px;"
+        data-src="#busca-mobile">
+        <i class="fas fa-search text-6"></i>
+      </button>
+    </div>
+
+    {if $imoveis==0}
+    <section class="vazio my-5 d-nonex">
+      <div class="container">
+        <div class="row text-center">
+          <div class="h3">
+            Nenhum imóvel encontrado para os filtros selecionados.
+          </div>
+          <div class="h5 mt-5">
+            Não encontrou o imóvel que procura?
+          </div>
+          <div>
+            Conte-nos como é o imóvel que você procura que nossa equipe fará uma busca especial para você.
+          </div>
+          <div class="mt-4">
+            <a href="encomende-seu-imovel" class="btn btn-lg btn-2 rounded-pill">
+              Encontre meu imóvel
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/if}
+
+    {block links}
+    <section class="mais border-top brd-body d-none d-lg-block">
+      <div class="container">
+        <div class="row pt-5">
+
+          {if $links1['links'] }
+          <div class="col-md-6 mb-5">
+            <h3 class="h5">
+              {$links1['title']}
+            </h3>
+            <ul class="nav flex-column mt-3">
+              {foreach $links1['links'] as $link}
+              <li class="nav-item d-flex align-items-center mt-2">
+                <i class='bx-sm bx bx-chevron-right-circle me-2 me-2'></i>
+                <a href="{$link['url']}">
+                  {$link['label']}
+                </a>
+              </li>
+              {/foreach}
+            </ul>
+          </div>
+          {/if}
+
+          {if $links2['links'] }
+          <div class="col-md-6 mb-5">
+            <h3 class="h5">
+              {$links2['title']}
+            </h3>
+            <ul class="nav flex-column mt-3">
+              {foreach $links2['links'] as $link}
+              <li class="nav-item d-flex align-items-center mt-2">
+                <i class='bx-sm bx bx-chevron-right-circle me-2'></i>
+                <a href="{$link['url']}">
+                  {$link['label']}
+                </a>
+              </li>
+              {/foreach}
+            </ul>
+          </div>
+          {/if}
+
+        </div>
+      </div>
+    </section>
+    {/block}
+
+    {block busca}
+    <section id="busca-mobile" class="form-busca bg-body color-body py col-12 col-md-4 dialog left overflow-hidden">
+
+      <div class="d-flex justify-content-between p-4 border-bottom brd-body">
+        <div class="w-100 text-3">
+          Filtrar Imóveis
+        </div>
+        <div class="text-end">
+          <a href="#" class="prevent dialog-close"><i class="fa fa-times"></i></a>
+        </div>
+      </div>
+
+      <div class="px-4 custom-scroll pb-3" style="height: calc(100% - 100px);">
+        {include 'busca-avancada.latte'}
+        <div class="p-4 mb-2"></div>
+      </div>
+
+      <div class="position-absolute w-100 bottom-0 p-4 bg-body border-top brd-body">
+        <button
+          type="submit" name="Buscar" aria-label="Buscar"
+          class="btn-buscar-float btn btn-1 w-100 loading">
+            <i class="fa fa-search"></i>
+            <span class="btn-buscar-label">Buscar Imóveis</span>
+        </button>
+      </div>
+
+    </section>
+    {/block}
+
+{/block}

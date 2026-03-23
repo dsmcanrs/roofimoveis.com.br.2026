@@ -1,0 +1,700 @@
+{layout 'layout.latte'}
+
+{block bodyTag}<body class="pg-detalhes" data-bs-spy="false">{/block}
+
+{block content}
+
+    <main id="main" class="mb-5">
+
+      <section class="media">
+
+        <div class="tab-content bg-footer overflow-hidden">
+
+          <div id="pill-fotos" class="fotos tab-pane fade show active" data-aos="fade">
+            <div
+              class="swiper-container overflow-hidden vh-40 vh-md-60 position-relative"
+              data-sm="1,0" data-md="2,0" data-lg="2,0">
+
+              <div class="swiper-wrapper">
+                {foreach $imovel['fotos'] as $foto}
+                <div class="swiper-slide h-100">
+                  <a
+                    href="{$foto['g']}"
+                    class="foto"
+                    data-fancybox="fotos"
+                    data-caption="{$foto['desc']}"
+                    data-thumb="{$foto['g']}"
+                    data-background="{$foto['g']}"
+                    >
+                    <img src="{$foto['g']}" class="img-fit" alt="{$foto['desc']}" loading="lazy">
+                  </a>
+                  <div class="swiper-lazy-preloader spinner"></div>
+                </div>
+                {/foreach}
+              </div>
+
+              <div class="position-absolute top-0 w-100 z-index-10 pt-3 px-2">
+                <div class="container position-relative mx-auto w-100 bg-dark d-flexx justify-content-betweenx left-0">
+                  {if $imovel['tag']}
+                  <div class="position-absolute top-0 left-0">
+                    <span class="badge bg-color-2 text-white">
+                      {$imovel['tag']}
+                    </span>
+                  </div>
+                  {/if}
+                  <div class="position-absolute top-0 right-0">
+                    <a href="#" class="btn btn-sm rounded-pill btn-alpha go-back">
+                      <i class="fa fa-chevron-left"></i>
+                      Voltar
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="navigation position-absolute bottom-0 w-100 z-index-1">
+                <div class="container py-3 d-flex justify-content-left">
+                  <div class="setas d-none d-md-flex">
+                    <a href="#" class="prev btn btn-alpha rounded-pill-left">
+                      <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#" class="next btn btn-alpha rounded-pill-right">
+                      <i class="fa fa-angle-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {if $imovel['tour']}
+          <div id="pill-tour" class="tab-pane fade">
+            <div class="ratio ratio-16x9 vh-40 vh-md-60">
+              <iframe
+              src="{$imovel['tour']}"
+              allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+          {/if}
+
+          {if $imovel['video']}
+          <div id="pill-video" class="tab-pane fade">
+            <div class="ratio ratio-16x9 vh-40 vh-md-60">
+                <iframe
+                src="https://www.youtube.com/embed/{$imovel['video']}"
+                allowfullscreen>
+                </iframe>
+            </div>
+          </div>
+          {/if}
+
+          {if $imovel['mapa']}
+          <div id="pill-mapa" class="tab-pane fade">
+            <div id="map" class="rounded vh-40 vh-md-60"></div>
+            <div id="markers" style="display: none">
+              {$imovel['mapa']}
+            </div>
+          </div>
+          {/if}
+
+        </div>
+
+        <div class="container">
+
+          <ul class="nav nav-pills d-flex justify-content-center justify-content-lg-start py-3">
+            <li class="nav-item my-2 me-2">
+              <a
+                data-bs-toggle="pill" data-bs-target="#pill-fotos"
+                class="rounded-pill px-3 btn brd-1 color-1 btn-active-1 active">
+                <i class="far fa-images"></i>
+                Fotos
+              </a>
+            </li>
+            <li class="nav-item my-2 me-2" n:if="$imovel['tour']">
+              <a
+                data-bs-toggle="pill" data-bs-target="#pill-tour"
+                class="rounded-pill px-3 btn brd-1 color-1 btn-active-1">
+                <i class="far fa-eye"></i>
+                Tour
+              </a>
+            </li>
+            <li class="nav-item my-2 me-2" n:if="$imovel['video']">
+              <a
+                data-bs-toggle="pill" data-bs-target="#pill-video"
+                class="rounded-pill px-3 btn brd-1 color-1 btn-active-1">
+                <i class="fas fa-film"></i>
+                Vídeo
+              </a>
+            </li>
+            <li class="nav-item my-2 me-2" n:if="$imovel['mapa']">
+              <a
+                data-bs-toggle="pill" data-bs-target="#pill-mapa"
+                class="rounded-pill px-3 btn brd-1 color-1 btn-active-1">
+                <i class="fas fa-map-marked-alt"></i>
+                Mapa
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+      </section>
+
+      <section class="info overflow-visible">
+        <div class="container">
+          <div class="row position-relative">
+
+            <div class="order-2 order-lg-1 py-3 col-lg-8">
+
+              {block breadcrumb}
+              <div>
+                <span class="d-none d-md-inline">
+                  {foreach $breadcrumb as $item}
+                    <a href="{$item['url']}">
+                      {$item['label']}
+                    </a>
+                    <i class="fa fa-angle-right me-1"></i>
+                  {/foreach}
+                </span>
+                Código: {$imovel['codigo']}
+              </div>
+              {/block}
+
+              <h1 class="h1">
+                {$imovel['titulo']}
+              </h1>
+
+              {if $imovel['mostrar_ficha']}
+              <div class="ficha my-4 d-block d-md-flex flex-wrap justify-content-around">
+                {if $imovel['dormitorios'] }
+                <div class="item rounded-3 border brd-body m-1 p-3">
+                    <div class="ico text-2 text-md-6">
+                      <i class='bx bx-bed'></i>
+                    </div>
+                    <div>
+                      <span class="num">{$imovel['dormitorios']}</span>
+                      <span class="label">Dormitório(s)</span>
+                    </div>
+                </div>
+                {/if}
+                {if $imovel['suites'] }
+                <div class="item rounded-3 border brd-body m-1 p-3">
+                    <div class="ico text-2 text-md-6">
+                      <i class="bx bx-shower"></i>
+                    </div>
+                    <div>
+                      <span class="num">{$imovel['suites']}</span>
+                      <span class="label">Suíte(s)</span>
+                    </div>
+                </div>
+                {/if}
+                {if $imovel['banheiros'] }
+                <div class="item rounded-3 border brd-body m-1 p-3">
+                    <div class="ico text-2 text-md-6">
+                      <i class="bx bx-bath"></i>
+                    </div>
+                    <div>
+                      <span class="num">{$imovel['banheiros']}</span>
+                      <span class="label">Banheiro(s)</span>
+                    </div>
+                </div>
+                {/if}
+                {if $imovel['vagas'] }
+                <div class="item rounded-3 border brd-body m-1 p-3">
+                    <div class="ico text-2 text-md-6">
+                      <i class="bx bx-car"></i>
+                    </div>
+                    <div>
+                      <span class="num">{$imovel['vagas']}</span>
+                      <span class="label">Vaga(s)</span>
+                    </div>
+                </div>
+                {/if}
+                {if $imovel['area_util'] }
+                <div class="item rounded-3 border brd-body m-1 p-3">
+                    <div class="ico text-2 text-md-6">
+                      <i class="bx bx-crop"></i>
+                    </div>
+                    <div>
+                      <span class="num">{$imovel['area_util']}m²</span>
+                      <span class="label">Útil</span>
+                    </div>
+                </div>
+                {/if}
+                {if $imovel['area_privativa'] }
+                <div class="item rounded-3 border brd-body m-1 p-3">
+                    <div class="ico text-2 text-md-6">
+                      <i class="bx bx-crop"></i>
+                    </div>
+                    <div>
+                      <span class="num">{$imovel['area_privativa']}m²</span>
+                      <span class="label">Privativa</span>
+                    </div>
+                </div>
+                {/if}
+                {if $imovel['area_total'] }
+                <div class="item rounded-3 border brd-body m-1 p-3">
+                    <div class="ico text-2 text-md-6">
+                      <i class="bx bx-crop"></i>
+                    </div>
+                    <div>
+                      <span class="num">{$imovel['area_total']}m²</span>
+                      <span class="label">Total</span>
+                    </div>
+                </div>
+                {/if}
+              </div>
+              {/if}
+
+              <div class="descricao my-5">
+                <h2 class="h2 mb-4">
+                  Sobre o Imóvel
+                </h2>
+                {if $imovel['descricao']}
+                <div>
+                  {$imovel['descricao']|noescape}
+                </div>
+                {/if}
+                {if $imovel['descricao_empreendimento']}
+                <div>
+                  {$imovel['descricao_empreendimento']|noescape}
+                </div>
+                {/if}
+              </div>
+
+              {foreach $imovel['infra'] as $index => $itens}
+              <div class="infra my-5">
+                  <h2 class="h3 mb-4">
+                      {$index}
+                  </h2>
+                  <div class="">
+                      <ul class="nav d-block">
+                          {foreach $itens as $item}
+                            <li>
+                              <i class="fa fa-check"></i>
+                              {$item}
+                            </li>
+                          {/foreach}
+                      </ul>
+                  </div>
+              </div>
+              {/foreach}
+
+            </div>
+
+            <div class="contato position-relative order-1 order-lg-2 col-lg-4 pt-4" data-aos="fade-up">
+
+              <div class="bg-body border brd-body rounded-3 shadow p-4 position-sticky-top">
+
+                {if floatval($imovel['valor_venda'])>0 }
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <div>
+                    Venda
+                  </div>
+                  <div class="text-6 color-1 fw-600">
+                    {$imovel['moeda'] . $imovel['valor_venda']}
+                  </div>
+                </div>
+                {/if}
+
+                {if floatval($imovel['valor_aluguel'])>0 }
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <div>
+                    Locação
+                  </div>
+                  <div class="text-6 color-1 fw-600">
+                    {$imovel['moeda'] . $imovel['valor_aluguel']}
+                  </div>
+                </div>
+                {/if}
+
+                {if floatval($imovel['valor_diaria'])>0 }
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <div>
+                    Locação diária
+                  </div>
+                  <div class="text-6 color-1 fw-600">
+                    {$imovel['moeda'] . $imovel['valor_diaria']}
+                  </div>
+                </div>
+                {/if}
+
+                {if floatval($imovel['valor_condominio'])>0 }
+                <div class="d-flex justify-content-between align-items-baseline py-1">
+                  <div>
+                    Condomínio
+                    <i class="fa-solid fa-circle-info tt" title="Valores podem sofrer alterações"></i>
+                  </div>
+                  <div class="text-2 text-center color-1">
+                    {$imovel['moeda'] . $imovel['valor_condominio']}
+                  </div>
+                </div>
+                {/if}
+
+                {if floatval($imovel['valor_iptu'])>0 }
+                <div class="d-flex justify-content-between align-items-baseline py-1">
+                  <div>
+                    IPTU
+                    <i class="fa-solid fa-circle-info tt" title="Valores podem sofrer alterações"></i>
+                  </div>
+                  <div class="text-2 text-center color-1">
+                    {$imovel['moeda'] . $imovel['valor_iptu']}
+                  </div>
+                </div>
+                {/if}
+
+                <div class="my-4"></div>
+
+                <div class="mt-2">
+                  <button class="btn btn-lg btn-1 w-100 dialog-open" data-src="#form-contato">
+                    Tenho interesse
+                  </button>
+                </div>
+
+                <div class="mt-2">
+                  <button class="btn btn-lg btn-2 w-100 dialog-open" data-src="#form-agendar">
+                    Agendar Visita
+                  </button>
+                </div>
+
+                <div class="mt-2">
+                  <a
+                  class="w-100 btn btn btn-lg whatsapp whatsapp-brd"
+                  href="https://api.whatsapp.com/send?phone={$contato['whatsapp-num']}&text={$whatsapp['msg']}"
+                  target="_blank">
+                    <i class="fab fa-whatsapp whatsapp"></i>
+                    Whatsapp
+                  </a>
+                </div>
+
+                <div class="mt-4">
+
+                  <div class="">
+                    <a href="#"
+                      class="btn btn-sm brd-2 color-2 bg-hover-2 color-hover-white w-100 fav fav-{$imovel['id']} fav-on tt"
+                      data-id="{$imovel['id']}"
+                      title="Remover dos Favoritos">
+                      <i class="fas fa-heart"></i>
+                      Remover Imóvel
+                    </a>
+                    <a href="#"
+                      class="btn btn-sm brd-2 color-2 bg-hover-2 color-hover-white w-100 fav fav-{$imovel['id']} fav-off tt"
+                      data-id="{$imovel['id']}"
+                      title="Adicionar aos Favoritos">
+                      <i class="far fa-heart"></i>
+                      Salvar Imóvel
+                    </a>
+                  </div>
+
+                  <div class="compartilhar x-border-top brd-body text-center mt-3">
+                    <div class="py-2">
+                      Compartilhar
+                    </div>
+                    <div class="d-flex justify-content-around text-6">
+                      <a
+                        href="https://api.whatsapp.com/send?text={$site['canonical']}"
+                        target="_blank"
+                        title="Whatsapp"
+                        class="color-1 color-hover-2 tt"
+                        >
+                        <i class="fab fa-whatsapp"></i>
+                      </a>
+                      <a
+                        href="http://www.facebook.com/sharer/sharer.php?u={$site['canonical']}&t={$titulo}"
+                        target="_blank"
+                        title="Facebook"
+                        class="color-1 color-hover-2 tt"
+                        >
+                        <i class="fab fa-facebook"></i>
+                      </a>
+                      <a
+                        href="https://twitter.com/intent/tweet?url={$site['canonical']}"
+                        target="_blank"
+                        title="Twitter"
+                        class="color-1 color-hover-2 d-none tt"
+                        >
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/shareArticle?mini=true&url={$site['canonical']}"
+                        target="_blank"
+                        title="Linkedin"
+                        class="color-1 color-hover-2 tt"
+                        >
+                        <i class="fab fa-linkedin"></i>
+                      </a>
+                      <a
+                        href="#"
+                        title="Copiar Link"
+                        class="color-1 color-hover-2 prevent copy-link tt"
+                        >
+                        <i class="fas fa-link"></i>
+                      </a>
+                      <a
+                        href="mailto:{$site['email']}?subject={$titulo}&body={$titulo}%0A%0A{$site['canonical']}"
+                        target="_blank"
+                        class="color-1 color-hover-2 tt"
+                        title="Enviar por E-mail"
+                        >
+                        <i class="fa fa-envelope"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              {if $corretores}
+              {foreach $corretores as $corretor}
+              <div class="corretor d-flex border brd-body rounded-3 shadow mt-5 p-3 overflow-hidden">
+                <div class="d-flex align-items-center">
+
+                  <div class="foto overflow-hidden d-flex h-100x pe-3">
+                    <img
+                      src="{$corretor['foto']}" alt="{$corretor['nome']}"
+                      class="img-fit rounded-circle"
+                      style="width: 120px; height: 120px;">
+                  </div>
+
+                  <div class="info p-3x ps-0">
+                    <div class="mb-1">
+                      <span class="text-2 fw-600 truncate overflow-hidden">
+                        {$corretor['nome']}
+                      </span>
+                    </div>
+                    <div class="mb-1 small">
+                      CRECI {$corretor['creci']}
+                    </div>
+                    <div class="mb-2">
+                      <a
+                        class="truncate overflow-hidden"
+                        href="https://api.whatsapp.com/send?phone={$corretor['fone_num']}&text={$whatsapp['msg']}">
+                        <i class="fab fa-whatsapp whatsapp"></i>
+                        {$corretor['fone']}
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        href="{$corretor['url']}"
+                        class="btn btn-sm brd-1 color-1 bg-hover-1 color-hover-white truncate overflow-hidden">
+                        Veja meus imóveis
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              {/foreach}
+              {/if}
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {block o_empreendimento}
+      {if $o_empreendimento}
+      <section class="border-top brd-body">
+        <div class="container my-4">
+          <h2 class="h2">
+            Mais sobre o Empreendimento {$o_empreendimento['nome']}
+          </h2>
+          <div class="">
+            {$o_empreendimento['descricao']|noescape}
+          </div>
+          <div class="fotos my-4 position-relative">
+            <div class="swiper-container overflow-hidden w-100">
+              <div class="swiper-wrapper">
+                {foreach $o_empreendimento['fotos'] as $foto}
+                <div class="swiper-slide vh-10 vh-md-20 w-3">
+                    <a href="{$foto['foto']}"
+                      data-fancybox="fotos_emp"
+                      data-caption="{$foto['descricao']}"
+                      data-thumb="{$foto['fotop']}"
+                      class="foto">
+                      <img src="{$foto['foto']}" alt="{$foto['descricao']}" class="img-fit rounded-3 border brd-body" loading="lazy">
+                    </a>
+                </div>
+                {/foreach}
+              </div>
+              <div class="navigation d-md-flex w-100">
+                <a class="prev btn btn-alpha rounded-pill z-index-10 position-absolute" style="left: -15px; bottom: 30%;">
+                  <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="next btn btn-alpha rounded-pill z-index-10 position-absolute" style="right: -15px; bottom: 30%;">
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2 text-center">
+            <a href="{$o_empreendimento['url']}" class="btn btn-1 rounded-pill">
+              Saiba mais
+            </a>
+          </div>
+        </div>
+      </section>
+      {/if}
+      {/block}
+
+      {block no_condominio}
+      {if $no_condominio}
+      <section class="border-top brd-body">
+        <div class="container  my-4">
+
+          <div class="d-flex py-4">
+            <h2 class="h1" data-aos="fade">
+              Outras unidades em {$imovel['empreendimento']}
+            </h2>
+          </div>
+
+          <div class="row pb-4" data-aos="fade">
+            {foreach $no_condominio as $imovel}
+            <div class="col-md-4">
+              {include 'card-imovel-min.latte' imovel:$imovel}
+            </div>
+            {/foreach}
+          </div>
+
+        </div>
+      </section>
+      {/if}
+      {/block}
+
+      {block semelhantes}
+      {if $semelhantes}
+      <section class="border-top brd-body">
+        <div class="container mt-3 mt-lg-4 pt-3">
+
+          <div class="mb-4">
+            <h2 class="h1" data-aos="fade">
+              Imóveis semelhantes em {$imovel['cidade']}
+            </h2>
+          </div>
+
+          <div class="swiper-container overflow-hidden" data-sm="1,20" data-md="2,20" data-lg="3,20" data-aos="fade">
+            <div class="swiper-wrapper">
+              {foreach $semelhantes as $imovel}
+              <div class="swiper-slide mb-5">
+                {include 'card-imovel.latte' imovel:$imovel}
+              </div>
+              {/foreach}
+            </div>
+            <div class="pagination d-flex justify-content-center justify-content-md-startx"></div>
+          </div>
+
+        </div>
+      </section>
+      {/if}
+      {/block}
+
+    </main>
+
+    {block form_contato}
+    <section id="form-contato" class="dialog bg-body color-body rounded-5 col-11 col-md-5">
+      <div class="p-4">
+
+        <div class="d-flex justify-content-between col-12 mb-3">
+          <h2 class="h2">
+            Mais informações
+          </h2>
+          <a href="#" class="dialog-close">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+
+        <form class="validate-form" action="{$form_contato['action']}" method="post">
+
+          <div class="row">
+            {$form_contato['form']|noescape}
+          </div>
+
+          <div class="mb-2 d-flex justify-content-center">
+            {$form_contato['captcha']|noescape}
+          </div>
+
+          <div class="form-group text-center col-md-12">
+            <button type="submit" class="btn btn-1 rounded-pill px-5">
+              Enviar
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+    {/block}
+
+    {block form_agendar}
+    <section id="form-agendar" class="dialog bg-body color-body rounded-5 col-11 col-md-5">
+      <div class="p-4">
+
+        <div class="d-flex justify-content-between col-12 mb-3">
+          <h2 class="h2">
+            Agendar Visita
+          </h2>
+          <a href="#" class="dialog-close">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+
+        <form class="validate-form" action="{$form_agendar['action']}" method="post">
+
+          <div class="max-vh-60 pe-3 custom-scroll scroll-y">
+
+            <div class="form-group col-md-12">
+              <label for="">Qual o melhor dia da semana para você?</label>
+              <div class="btn-group btn-group-sm w-100">
+                <input type="radio" class="btn-check" id="seg" name="dia" value="Segunda-feira">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="seg">Seg</label>
+                <input type="radio" class="btn-check" id="ter" name="dia" value="Terça-feira">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="ter">Ter</label>
+                <input type="radio" class="btn-check" id="qua" name="dia" value="Quarta-feira">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="qua">Qua</label>
+                <input type="radio" class="btn-check" id="qui" name="dia" value="Quinta-feira">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="qui">Qui</label>
+                <input type="radio" class="btn-check" id="sex" name="dia" value="Sexta-feira">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="sex">Sex</label>
+                <input type="radio" class="btn-check" id="sab" name="dia" value="Sábado">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="sab">Sáb</label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="">Qual o melhor horário?</label>
+              <div class="btn-group w-100" data-toggle="buttons">
+                <input type="radio" class="btn-check" id="manha" name="horario" value="Manhã">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="manha">Manhã</label>
+                <input type="radio" class="btn-check" id="meiodia" name="horario" value="Meio-dia">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="meiodia">Meio-dia</label>
+                <input type="radio" class="btn-check" id="tarde" name="horario" value="Tarde">
+                <label class="btn btn-w brd-body btn-active-1 bg-hover-1" for="tarde">Tarde</label>
+              </div>
+            </div>
+
+            <div class="row">
+              {$form_agendar['form']|noescape}
+            </div>
+
+            <div class="mb-2 d-flex justify-content-center">
+              {$form_agendar['captcha']|noescape}
+            </div>
+
+          </div>
+
+          <div class="form-group col-md-12 text-center pt-4">
+            <button type="submit" class="btn btn-1 rounded-pill px-5">
+              Enviar
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+    {/block}
+
+{/block}
