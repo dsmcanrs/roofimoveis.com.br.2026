@@ -54,7 +54,7 @@ body {
 	background: var(--color_body);
 	color: var(--color_body_font);
 	font-family: 'Open Sans', sans-serif;
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 15px;
 }
 @media (max-width: 990px) {
